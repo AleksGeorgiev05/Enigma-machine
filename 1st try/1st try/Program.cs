@@ -10,7 +10,8 @@ namespace _1st_try
             Application.Run(new Form1());
 
             
-                
+            
+            
         }
 
 
