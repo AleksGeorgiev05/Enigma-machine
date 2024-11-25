@@ -22,18 +22,17 @@ namespace _1st_try
         {
 
         }
-
         List<char> alphabet = new List<char>();
-        
-        public void ShowMessage(Label a)
+        public List<char> InitialiseAlphabet()
         {
-            //alphabet.Shuffle
             for (int i = 0; i < 26; i++)
             {
-
                 alphabet.Add((char)(i + 65));
             }
-
+            return alphabet;
+        }
+        private void ShowMessage(Label a)
+        {
             label5.Text = "";
 
             for (int i = 0; i < alphabet.Count; i++)
@@ -49,14 +48,13 @@ namespace _1st_try
             
             for (int i = 0; i<list.Count; i++)
             {
-                int a;
+                int a;                
                 do
                 {
                     a = rnd.Next(list.Count);
-                } while (shuffled_arr[a] == '0');
+                } while (shuffled_arr[a].ToString() != "\0");
                 shuffled_arr[a] = list[i];
             }
-            
             return shuffled_arr.ToList();
         }
         private void PressedLetter(Button btn_pressed)

@@ -6,14 +6,10 @@ namespace _1st_try
         [STAThread]
         static void Main()
         {
+            Form1.InitialiseAlphabet();
+
             ApplicationConfiguration.Initialize();
             Application.Run(new Form1());
-
-            
-            
-            
         }
-
-
     }
 }
