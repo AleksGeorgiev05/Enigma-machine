@@ -1,4 +1,5 @@
 using System.Security.Cryptography;
+using System.Windows.Forms;
 namespace _1st_try
 {
     public partial class Form1 : Form
@@ -6,23 +7,9 @@ namespace _1st_try
         public Form1()
         {
             InitializeComponent();
+            InitialiseAlphabet();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-
-        }
-        List<char> alphabet = new List<char>();
         public List<char> InitialiseAlphabet()
         {
             for (int i = 0; i < 26; i++)
@@ -31,13 +18,29 @@ namespace _1st_try
             }
             return alphabet;
         }
-        private void ShowMessage(Label a)
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
+        List<char> alphabet = new List<char>();
+
+        private void ShowMessage(string message)
         {
             label5.Text = "";
 
             for (int i = 0; i < alphabet.Count; i++)
             {
-                a.Text += alphabet[i];
+                label5.Text += alphabet[i];
             }
         }
 
@@ -45,10 +48,10 @@ namespace _1st_try
         {
             char[] shuffled_arr = new char[list.Count];
             Random rnd = new Random();
-            
-            for (int i = 0; i<list.Count; i++)
+
+            for (int i = 0; i < list.Count; i++)
             {
-                int a;                
+                int a;
                 do
                 {
                     a = rnd.Next(list.Count);
@@ -72,8 +75,53 @@ namespace _1st_try
 
         private void button5_Click(object sender, EventArgs e)
         {
-            ShowMessage(label5);
-            Shuffle(alphabet);
+            //ShowMessage(label5);
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            List<char> rotor_1 = alphabet;
+
+            for (int i = 0; i < int.Parse(comboBox1.Text); i++)
+            {
+                char temp = rotor_1[0];
+                for (int j = 0; j < rotor_1.Count - 1; j++)
+                {
+                    rotor_1[j] = rotor_1[j + 1];
+                }
+                rotor_1[rotor_1.Count - 1] = temp;
+            }
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            List<char> rotor_1 = alphabet;
+
+            for (int i = 0; i < int.Parse(comboBox1.Text); i++)
+            {
+                char temp = rotor_1[0];
+                for (int j = 0; j < rotor_1.Count - 1; j++)
+                {
+                    rotor_1[j] = rotor_1[j + 1];
+                }
+                rotor_1[rotor_1.Count - 1] = temp;
+            }
+        }
+
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            List<char> rotor_1 = alphabet;
+
+            for (int i = 0; i < int.Parse(comboBox1.Text); i++)
+            {
+                char temp = rotor_1[0];
+                for (int j = 0; j < rotor_1.Count - 1; j++)
+                {
+                    rotor_1[j] = rotor_1[j + 1];
+                }
+                rotor_1[rotor_1.Count - 1] = temp;
+            }
         }
     }
 }

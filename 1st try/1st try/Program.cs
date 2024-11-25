@@ -1,3 +1,4 @@
+
 namespace _1st_try
 {
     internal static class Program
@@ -6,8 +7,6 @@ namespace _1st_try
         [STAThread]
         static void Main()
         {
-            Form1.InitialiseAlphabet();
-
             ApplicationConfiguration.Initialize();
             Application.Run(new Form1());
         }
