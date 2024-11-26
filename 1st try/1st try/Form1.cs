@@ -10,6 +10,11 @@ namespace _1st_try
             InitialiseAlphabet();
         }
 
+        private List<char> alphabet = new List<char>();
+        private List<char> rotor_1 = new List<char>();
+        private List<char> rotor_2 = new List<char>();
+        private List<char> rotor_3 = new List<char>();
+
         public List<char> InitialiseAlphabet()
         {
             for (int i = 0; i < 26; i++)
@@ -18,21 +23,15 @@ namespace _1st_try
             }
             return alphabet;
         }
-        private void Form1_Load(object sender, EventArgs e)
+        private List<char> ResetRotor(List<char> rotor)
         {
-
+            rotor.Clear();
+            for (int i = 0; i < 26; i++)
+            {
+                rotor.Add((char)(i + 65));
+            }
+            return rotor;
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            PressedLetter();
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-
-        }
-        List<char> alphabet = new List<char>();
 
         private void ShowMessage(string message)
         {
@@ -62,29 +61,23 @@ namespace _1st_try
         }
         private void PressedLetter()
         {
-            if (comboBox3.Text == "")
+            if (comboBox1.Text == "" || comboBox2.Text == "" || comboBox3.Text == "")
             {
                 label5.Text = "The rotors must be set to the right setting!";
-                
             }
             else
             {
+                label5.Text = "";
                 int value = int.Parse(comboBox3.Text);
                 comboBox3.Text = (++value).ToString();
             }
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            //ShowMessage(label5);
-
+            
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            List<char> rotor_1 = alphabet;
-
-            for (int i = 0; i < int.Parse(comboBox1.Text); i++)
+            ResetRotor(rotor_1);
+            for (int i = 0; i < int.Parse(comboBox1.Text) - 1; i++)
             {
                 char temp = rotor_1[0];
                 for (int j = 0; j < rotor_1.Count - 1; j++)
@@ -97,31 +90,47 @@ namespace _1st_try
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            List<char> rotor_1 = alphabet;
-
-            for (int i = 0; i < int.Parse(comboBox1.Text); i++)
+            ResetRotor(rotor_2);
+            for (int i = 0; i < int.Parse(comboBox1.Text) - 1; i++)
             {
-                char temp = rotor_1[0];
-                for (int j = 0; j < rotor_1.Count - 1; j++)
+                char temp = rotor_2[0];
+                for (int j = 0; j < rotor_2.Count - 1; j++)
                 {
-                    rotor_1[j] = rotor_1[j + 1];
+                    rotor_2[j] = rotor_2[j + 1];
                 }
-                rotor_1[rotor_1.Count - 1] = temp;
+                rotor_2[rotor_2.Count - 1] = temp;
             }
         }
 
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
-            List<char> rotor_1 = alphabet;
-
-            for (int i = 0; i < int.Parse(comboBox1.Text); i++)
+            ResetRotor(rotor_3);
+            for (int i = 0; i < int.Parse(comboBox1.Text) - 1; i++)
             {
-                char temp = rotor_1[0];
-                for (int j = 0; j < rotor_1.Count - 1; j++)
+                char temp = rotor_3[0];
+                for (int j = 0; j < rotor_3.Count - 1; j++)
                 {
-                    rotor_1[j] = rotor_1[j + 1];
+                    rotor_3[j] = rotor_3[j + 1];
                 }
-                rotor_1[rotor_1.Count - 1] = temp;
+                rotor_3[rotor_3.Count - 1] = temp;
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (comboBox1.Text == "" || comboBox2.Text == "" || comboBox3.Text == "")
+            {
+                label5.Text = "";
+                label5.Text = "The rotors must be set to the right setting!";
+            }
+            else
+            {
+                label5.Text = "";
             }
         }
     }
