@@ -25,7 +25,7 @@ namespace _1st_try
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+            PressedLetter();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -60,17 +60,18 @@ namespace _1st_try
             }
             return shuffled_arr.ToList();
         }
-        private void PressedLetter(Button btn_pressed)
+        private void PressedLetter()
         {
-            Random random = new Random();
-            random.Next(25);
-            //alphabet.Shuffle();
-            //int a = int.
-            //List<char> alphabet_rotor_1 = alphabet.
-            //List<char> alphabet_rotor_2 = new List<char>();
-            //List<char> alphabet_rotor_3 = new List<char>();
-
-
+            if (comboBox3.Text == "")
+            {
+                label5.Text = "The rotors must be set to the right setting!";
+                
+            }
+            else
+            {
+                int value = int.Parse(comboBox3.Text);
+                comboBox3.Text = (++value).ToString();
+            }
         }
 
         private void button5_Click(object sender, EventArgs e)
