@@ -33,13 +33,15 @@
             comboBox1 = new ComboBox();
             comboBox2 = new ComboBox();
             comboBox3 = new ComboBox();
+            label1 = new Label();
+            richTextBox1 = new RichTextBox();
             SuspendLayout();
             // 
             // button5
             // 
-            button5.Location = new Point(612, 81);
+            button5.Location = new Point(241, 152);
             button5.Name = "button5";
-            button5.Size = new Size(65, 44);
+            button5.Size = new Size(121, 30);
             button5.TabIndex = 4;
             button5.Text = "Show message";
             button5.UseVisualStyleBackColor = true;
@@ -47,12 +49,13 @@
             // 
             // label5
             // 
+            label5.AccessibleRole = AccessibleRole.ButtonMenu;
             label5.AutoSize = true;
-            label5.Location = new Point(624, 188);
+            label5.Location = new Point(241, 201);
             label5.Name = "label5";
-            label5.Size = new Size(38, 15);
+            label5.Size = new Size(217, 15);
             label5.TabIndex = 9;
-            label5.Text = "label5";
+            label5.Text = "Your encrypted message will show here!";
             // 
             // comboBox1
             // 
@@ -82,12 +85,33 @@
             comboBox3.Size = new Size(121, 23);
             comboBox3.TabIndex = 12;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(75, 152);
+            label1.Name = "label1";
+            label1.Size = new Size(113, 15);
+            label1.TabIndex = 14;
+            label1.Text = "Enter your text here!";
+            label1.Click += label1_Click;
+            // 
+            // richTextBox1
+            // 
+            richTextBox1.Location = new Point(75, 182);
+            richTextBox1.Name = "richTextBox1";
+            richTextBox1.Size = new Size(100, 96);
+            richTextBox1.TabIndex = 15;
+            richTextBox1.Text = "";
+            richTextBox1.TextChanged += richTextBox1_TextChanged;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
             ClientSize = new Size(800, 450);
+            Controls.Add(richTextBox1);
+            Controls.Add(label1);
             Controls.Add(comboBox3);
             Controls.Add(comboBox2);
             Controls.Add(comboBox1);
@@ -106,5 +130,7 @@
         private ComboBox comboBox1;
         private ComboBox comboBox2;
         private ComboBox comboBox3;
+        private Label label1;
+        private RichTextBox richTextBox1;
     }
 }

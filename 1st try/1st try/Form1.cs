@@ -15,6 +15,7 @@ namespace _1st_try
         private List<char> rotor_2 = new List<char>();
         private List<char> rotor_3 = new List<char>();
 
+        #region Methods
         public List<char> InitialiseAlphabet()
         {
             for (int i = 0; i < 26; i++)
@@ -71,8 +72,9 @@ namespace _1st_try
                 int value = int.Parse(comboBox3.Text);
                 comboBox3.Text = (++value).ToString();
             }
-            
+
         }
+        #endregion
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -131,7 +133,18 @@ namespace _1st_try
             else
             {
                 label5.Text = "";
+                label5.Text = richTextBox1.Text;
             }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
