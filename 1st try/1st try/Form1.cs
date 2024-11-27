@@ -123,20 +123,6 @@ namespace _1st_try
 
         }
 
-        private void button5_Click(object sender, EventArgs e)
-        {
-            if (comboBox1.Text == "" || comboBox2.Text == "" || comboBox3.Text == "")
-            {
-                label5.Text = "";
-                label5.Text = "The rotors must be set to the right setting!";
-            }
-            else
-            {
-                label5.Text = "";
-                label5.Text = richTextBox1.Text;
-            }
-        }
-
         private void label1_Click(object sender, EventArgs e)
         {
 
@@ -144,7 +130,20 @@ namespace _1st_try
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
+            if (comboBox3.Text is not "")
+            {
+                int value = int.Parse(comboBox3.Text) + 1;
 
+                if (value == 27)
+                {
+                    value = 1;
+                }
+                comboBox3.Text = value.ToString();
+            }
+            else
+            {
+                label5.Text = "Rotors must be set to the right setting!";
+            }
         }
     }
 }

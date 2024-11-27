@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button5 = new Button();
             label5 = new Label();
             comboBox1 = new ComboBox();
             comboBox2 = new ComboBox();
@@ -37,21 +36,11 @@
             richTextBox1 = new RichTextBox();
             SuspendLayout();
             // 
-            // button5
-            // 
-            button5.Location = new Point(241, 152);
-            button5.Name = "button5";
-            button5.Size = new Size(121, 30);
-            button5.TabIndex = 4;
-            button5.Text = "Show message";
-            button5.UseVisualStyleBackColor = true;
-            button5.Click += button5_Click;
-            // 
             // label5
             // 
             label5.AccessibleRole = AccessibleRole.ButtonMenu;
             label5.AutoSize = true;
-            label5.Location = new Point(241, 201);
+            label5.Location = new Point(264, 152);
             label5.Name = "label5";
             label5.Size = new Size(217, 15);
             label5.TabIndex = 9;
@@ -88,18 +77,18 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(75, 152);
+            label1.Location = new Point(74, 152);
             label1.Name = "label1";
-            label1.Size = new Size(113, 15);
+            label1.Size = new Size(122, 15);
             label1.TabIndex = 14;
-            label1.Text = "Enter your text here!";
+            label1.Text = "Enter your text below!";
             label1.Click += label1_Click;
             // 
             // richTextBox1
             // 
             richTextBox1.Location = new Point(75, 182);
             richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(100, 96);
+            richTextBox1.Size = new Size(121, 108);
             richTextBox1.TabIndex = 15;
             richTextBox1.Text = "";
             richTextBox1.TextChanged += richTextBox1_TextChanged;
@@ -116,7 +105,6 @@
             Controls.Add(comboBox2);
             Controls.Add(comboBox1);
             Controls.Add(label5);
-            Controls.Add(button5);
             Name = "Form1";
             Text = "Form1";
             Load += Form1_Load;
@@ -125,7 +113,6 @@
         }
 
         #endregion
-        private Button button5;
         private Label label5;
         private ComboBox comboBox1;
         private ComboBox comboBox2;
