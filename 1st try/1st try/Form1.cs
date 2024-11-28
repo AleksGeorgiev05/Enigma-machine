@@ -33,17 +33,19 @@ namespace _1st_try
             }
             return rotor;
         }
-
-        private void ShowMessage(string message)
+        private List<char> RotateRotor(List<char> rotor, int rotations)
         {
-            label5.Text = "";
-
-            for (int i = 0; i < alphabet.Count; i++)
+            for (int i = 0; i < rotations; i++)
             {
-                label5.Text += alphabet[i];
+                char temp = rotor[0];
+                for (int j = 0; j < rotor.Count - 1; j++)
+                {
+                    rotor[j] = rotor[j + 1];
+                }
+                rotor[rotor.Count - 1] = temp;
             }
+            return rotor;
         }
-
         private List<char> Shuffle(List<char> list)
         {
             char[] shuffled_arr = new char[list.Count];
@@ -60,62 +62,24 @@ namespace _1st_try
             }
             return shuffled_arr.ToList();
         }
-        private void PressedLetter()
-        {
-            if (comboBox1.Text == "" || comboBox2.Text == "" || comboBox3.Text == "")
-            {
-                label5.Text = "The rotors must be set to the right setting!";
-            }
-            else
-            {
-                label5.Text = "";
-                int value = int.Parse(comboBox3.Text);
-                comboBox3.Text = (++value).ToString();
-            }
-
-        }
         #endregion
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             ResetRotor(rotor_1);
-            for (int i = 0; i < int.Parse(comboBox1.Text) - 1; i++)
-            {
-                char temp = rotor_1[0];
-                for (int j = 0; j < rotor_1.Count - 1; j++)
-                {
-                    rotor_1[j] = rotor_1[j + 1];
-                }
-                rotor_1[rotor_1.Count - 1] = temp;
-            }
+            RotateRotor(rotor_1, int.Parse(comboBox1.Text) - 1);
         }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             ResetRotor(rotor_2);
-            for (int i = 0; i < int.Parse(comboBox1.Text) - 1; i++)
-            {
-                char temp = rotor_2[0];
-                for (int j = 0; j < rotor_2.Count - 1; j++)
-                {
-                    rotor_2[j] = rotor_2[j + 1];
-                }
-                rotor_2[rotor_2.Count - 1] = temp;
-            }
+            RotateRotor(rotor_2, int.Parse(comboBox2.Text) - 1);
         }
 
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
             ResetRotor(rotor_3);
-            for (int i = 0; i < int.Parse(comboBox1.Text) - 1; i++)
-            {
-                char temp = rotor_3[0];
-                for (int j = 0; j < rotor_3.Count - 1; j++)
-                {
-                    rotor_3[j] = rotor_3[j + 1];
-                }
-                rotor_3[rotor_3.Count - 1] = temp;
-            }
+            RotateRotor(rotor_3, int.Parse(comboBox3.Text) - 1);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -130,7 +94,7 @@ namespace _1st_try
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
-            if (comboBox1.Text is not "" || comboBox2.Text is not "" || comboBox3.Text is not "")
+            if (comboBox1.Text is not "" && comboBox2.Text is not "" && comboBox3.Text is not "")
             {
                 //Rotors rotation
                 if (int.Parse(comboBox1.Text) == 26)
