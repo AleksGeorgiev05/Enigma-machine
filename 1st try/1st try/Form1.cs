@@ -130,15 +130,30 @@ namespace _1st_try
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
-            if (comboBox3.Text is not "")
+            if (comboBox1.Text is not "" || comboBox2.Text is not "" || comboBox3.Text is not "")
             {
-                int value = int.Parse(comboBox3.Text) + 1;
-
-                if (value == 27)
+                //Rotors rotation
+                if (int.Parse(comboBox1.Text) == 26)
                 {
-                    value = 1;
+                    comboBox1.Text = 0.ToString();
                 }
-                comboBox3.Text = value.ToString();
+                comboBox1.Text = (int.Parse(comboBox1.Text) + 1).ToString();
+
+                if (int.Parse(comboBox2.Text) == 26)
+                {
+                    comboBox2.Text = 0.ToString();
+                }
+                comboBox2.Text = (int.Parse(comboBox2.Text) + 1).ToString();
+
+                if (int.Parse(comboBox3.Text) == 26)
+                {
+                    comboBox3.Text = 0.ToString();
+                }
+                comboBox3.Text = (int.Parse(comboBox3.Text) + 1).ToString();
+
+                //Encryption logic
+                char letter = label5.Text[label5.Text.Length - 1];
+
             }
             else
             {
