@@ -32,3 +32,20 @@ C:\Users\PC\Desktop\Enigma-machine\1st try\1st try\bin\Debug\net8.0-windows\1st 
 C:\Users\PC\Desktop\Enigma-machine\1st try\1st try\bin\Debug\net8.0-windows\1st try.pdb
 C:\Users\PC\Desktop\Enigma-machine\1st try\1st try\obj\Debug\net8.0-windows\1st try.genruntimeconfig.cache
 C:\Users\PC\Desktop\Enigma-machine\1st try\1st try\obj\Debug\net8.0-windows\ref\1st try.dll
+C:\Users\ALEX\Desktop\Enigma-machine\1st try\1st try\bin\Debug\net8.0-windows\1st try.exe
+C:\Users\ALEX\Desktop\Enigma-machine\1st try\1st try\bin\Debug\net8.0-windows\1st try.deps.json
+C:\Users\ALEX\Desktop\Enigma-machine\1st try\1st try\bin\Debug\net8.0-windows\1st try.runtimeconfig.json
+C:\Users\ALEX\Desktop\Enigma-machine\1st try\1st try\bin\Debug\net8.0-windows\1st try.dll
+C:\Users\ALEX\Desktop\Enigma-machine\1st try\1st try\bin\Debug\net8.0-windows\1st try.pdb
+C:\Users\ALEX\Desktop\Enigma-machine\1st try\1st try\obj\Debug\net8.0-windows\_1st_try.Form1.resources
+C:\Users\ALEX\Desktop\Enigma-machine\1st try\1st try\obj\Debug\net8.0-windows\1st try.csproj.GenerateResource.cache
+C:\Users\ALEX\Desktop\Enigma-machine\1st try\1st try\obj\Debug\net8.0-windows\1st try.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ALEX\Desktop\Enigma-machine\1st try\1st try\obj\Debug\net8.0-windows\1st try.AssemblyInfoInputs.cache
+C:\Users\ALEX\Desktop\Enigma-machine\1st try\1st try\obj\Debug\net8.0-windows\1st try.AssemblyInfo.cs
+C:\Users\ALEX\Desktop\Enigma-machine\1st try\1st try\obj\Debug\net8.0-windows\1st try.csproj.CoreCompileInputs.cache
+C:\Users\ALEX\Desktop\Enigma-machine\1st try\1st try\obj\Debug\net8.0-windows\1st try.sourcelink.json
+C:\Users\ALEX\Desktop\Enigma-machine\1st try\1st try\obj\Debug\net8.0-windows\1st try.dll
+C:\Users\ALEX\Desktop\Enigma-machine\1st try\1st try\obj\Debug\net8.0-windows\refint\1st try.dll
+C:\Users\ALEX\Desktop\Enigma-machine\1st try\1st try\obj\Debug\net8.0-windows\1st try.pdb
+C:\Users\ALEX\Desktop\Enigma-machine\1st try\1st try\obj\Debug\net8.0-windows\1st try.genruntimeconfig.cache
+C:\Users\ALEX\Desktop\Enigma-machine\1st try\1st try\obj\Debug\net8.0-windows\ref\1st try.dll

@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\kyord\\Desktop\\Enigma-machine\\1st try\\1st try\\1st try.csproj": {}
+    "C:\\Users\\ALEX\\Desktop\\Enigma-machine\\1st try\\1st try\\1st try.csproj": {}
   },
   "projects": {
-    "C:\\Users\\kyord\\Desktop\\Enigma-machine\\1st try\\1st try\\1st try.csproj": {
+    "C:\\Users\\ALEX\\Desktop\\Enigma-machine\\1st try\\1st try\\1st try.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kyord\\Desktop\\Enigma-machine\\1st try\\1st try\\1st try.csproj",
+        "projectUniqueName": "C:\\Users\\ALEX\\Desktop\\Enigma-machine\\1st try\\1st try\\1st try.csproj",
         "projectName": "1st try",
-        "projectPath": "C:\\Users\\kyord\\Desktop\\Enigma-machine\\1st try\\1st try\\1st try.csproj",
-        "packagesPath": "C:\\Users\\kyord\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kyord\\Desktop\\Enigma-machine\\1st try\\1st try\\obj\\",
+        "projectPath": "C:\\Users\\ALEX\\Desktop\\Enigma-machine\\1st try\\1st try\\1st try.csproj",
+        "packagesPath": "C:\\Users\\ALEX\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ALEX\\Desktop\\Enigma-machine\\1st try\\1st try\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\kyord\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ALEX\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -42,9 +43,8 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
-          "auditMode": "all"
-        },
-        "SdkAnalysisLevel": "9.0.100"
+          "auditMode": "direct"
+        }
       },
       "frameworks": {
         "net8.0-windows7.0": {
@@ -68,7 +68,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

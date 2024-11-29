@@ -99,19 +99,25 @@ namespace _1st_try
                 //Rotors rotation
                 if (int.Parse(comboBox1.Text) == 26)
                 {
-                    comboBox1.Text = 0.ToString();
+                    comboBox1.Text = 1.ToString();
                 }
-                comboBox1.Text = (int.Parse(comboBox1.Text) + 1).ToString();
+                else if (int.Parse(comboBox2.Text) % 4 == 0 && int.Parse(comboBox3.Text) % 6 == 0)
+                {
+                    comboBox1.Text = (int.Parse(comboBox1.Text) + 1).ToString();
+                }
 
                 if (int.Parse(comboBox2.Text) == 26)
                 {
-                    comboBox2.Text = 0.ToString();
+                    comboBox2.Text = 1.ToString();
                 }
-                comboBox2.Text = (int.Parse(comboBox2.Text) + 1).ToString();
+                else if (int.Parse(comboBox3.Text) % 6 == 0)
+                {
+                    comboBox2.Text = (int.Parse(comboBox2.Text) + 1).ToString();
+                }
 
                 if (int.Parse(comboBox3.Text) == 26)
                 {
-                    comboBox3.Text = 0.ToString();
+                    comboBox3.Text = 1.ToString();
                 }
                 comboBox3.Text = (int.Parse(comboBox3.Text) + 1).ToString();
 
