@@ -94,41 +94,93 @@ namespace _1st_try
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
-            if (comboBox1.Text is not "" && comboBox2.Text is not "" && comboBox3.Text is not "")
+            if (radioButton1.Checked)
             {
-                //Rotors rotation
-                if (int.Parse(comboBox1.Text) == 26)
+                if (comboBox1.Text is not "" && comboBox2.Text is not "" && comboBox3.Text is not "")
                 {
-                    comboBox1.Text = 1.ToString();
-                }
-                else if (int.Parse(comboBox2.Text) % 4 == 0 && int.Parse(comboBox3.Text) % 6 == 0)
-                {
-                    comboBox1.Text = (int.Parse(comboBox1.Text) + 1).ToString();
-                }
+                    //Rotors rotation
+                    if (int.Parse(comboBox1.Text) == 26)
+                    {
+                        comboBox1.Text = 1.ToString();
+                    }
+                    else if (int.Parse(comboBox2.Text) % 4 == 0 && int.Parse(comboBox3.Text) % 6 == 0)
+                    {
+                        comboBox1.Text = (int.Parse(comboBox1.Text) + 1).ToString();
+                    }
 
-                if (int.Parse(comboBox2.Text) == 26)
-                {
-                    comboBox2.Text = 1.ToString();
-                }
-                else if (int.Parse(comboBox3.Text) % 6 == 0)
-                {
-                    comboBox2.Text = (int.Parse(comboBox2.Text) + 1).ToString();
-                }
+                    if (int.Parse(comboBox2.Text) == 26)
+                    {
+                        comboBox2.Text = 1.ToString();
+                    }
+                    else if (int.Parse(comboBox3.Text) % 6 == 0)
+                    {
+                        comboBox2.Text = (int.Parse(comboBox2.Text) + 1).ToString();
+                    }
 
-                if (int.Parse(comboBox3.Text) == 26)
-                {
-                    comboBox3.Text = 1.ToString();
+                    if (int.Parse(comboBox3.Text) == 26)
+                    {
+                        comboBox3.Text = 1.ToString();
+                    }
+                    comboBox3.Text = (int.Parse(comboBox3.Text) + 1).ToString();
+
+                    //Encryption logic
+                    char letter = label5.Text[label5.Text.Length - 1];
+
                 }
-                comboBox3.Text = (int.Parse(comboBox3.Text) + 1).ToString();
-
-                //Encryption logic
-                char letter = label5.Text[label5.Text.Length - 1];
-
+                else
+                {
+                    label5.Text = "Rotors must be set to the right setting!";
+                }
             }
-            else
+            else if (radioButton2.Checked)
             {
-                label5.Text = "Rotors must be set to the right setting!";
+                if (comboBox1.Text is not "" && comboBox2.Text is not "" && comboBox3.Text is not "")
+                {
+                    //Rotors rotation
+                    if (int.Parse(comboBox1.Text) == 26)
+                    {
+                        comboBox1.Text = 1.ToString();
+                    }
+                    else if (int.Parse(comboBox2.Text) % 4 == 0 && int.Parse(comboBox3.Text) % 6 == 0)
+                    {
+                        comboBox1.Text = (int.Parse(comboBox1.Text) - 1).ToString();
+                    }
+
+                    if (int.Parse(comboBox2.Text) == 26)
+                    {
+                        comboBox2.Text = 1.ToString();
+                    }
+                    else if (int.Parse(comboBox3.Text) % 6 == 0)
+                    {
+                        comboBox2.Text = (int.Parse(comboBox2.Text) - 1).ToString();
+                    }
+
+                    if (int.Parse(comboBox3.Text) == 26)
+                    {
+                        comboBox3.Text = 1.ToString();
+                    }
+                    comboBox3.Text = (int.Parse(comboBox3.Text) - 1).ToString();
+
+                    //Encryption logic
+                    char letter = label5.Text[label5.Text.Length - 1];
+
+                }
+                else
+                {
+                    label5.Text = "Rotors must be set to the right setting!";
+                }
             }
+
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
