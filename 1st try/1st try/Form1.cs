@@ -99,7 +99,7 @@ namespace _1st_try
                 if (comboBox1.Text is not "" && comboBox2.Text is not "" && comboBox3.Text is not "")
                 {
                     //Rotors rotation
-                    if (int.Parse(comboBox1.Text) == 26)
+                    if (int.Parse(comboBox1.Text) == 26)//Zashto ne -> int.Parse(comboBox1.Text) == 26 && int.Parse(comboBox2.Text) % 4 == 0 && int.Parse(comboBox3.Text) % 6 == 0
                     {
                         comboBox1.Text = 1.ToString();
                     }
@@ -108,7 +108,7 @@ namespace _1st_try
                         comboBox1.Text = (int.Parse(comboBox1.Text) + 1).ToString();
                     }
 
-                    if (int.Parse(comboBox2.Text) == 26)
+                    if (int.Parse(comboBox2.Text) == 26)//Zashto ne -> int.Parse(comboBox2.Text) == 26 && int.Parse(comboBox3.Text) % 6 == 0
                     {
                         comboBox2.Text = 1.ToString();
                     }
@@ -119,7 +119,7 @@ namespace _1st_try
 
                     if (int.Parse(comboBox3.Text) == 26)
                     {
-                        comboBox3.Text = 1.ToString();
+                        comboBox3.Text = 1.ToString();//Zashto ne -> comboBox3.Text = 0.ToString();
                     }
                     comboBox3.Text = (int.Parse(comboBox3.Text) + 1).ToString();
 
@@ -136,6 +136,7 @@ namespace _1st_try
             {
                 if (comboBox1.Text is not "" && comboBox2.Text is not "" && comboBox3.Text is not "")
                 {
+                    //Sushtite popravki tuk
                     //Rotors rotation
                     if (int.Parse(comboBox1.Text) == 26)
                     {
