@@ -69,6 +69,7 @@ namespace _1st_try
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(121, 23);
             comboBox2.TabIndex = 11;
+            comboBox2.SelectedIndexChanged += comboBox2_SelectedIndexChanged_1;
             // 
             // comboBox3
             // 
@@ -79,6 +80,7 @@ namespace _1st_try
             comboBox3.Name = "comboBox3";
             comboBox3.Size = new Size(121, 23);
             comboBox3.TabIndex = 12;
+            comboBox3.SelectedIndexChanged += comboBox3_SelectedIndexChanged_2;
             // 
             // label1
             // 
@@ -156,5 +158,6 @@ namespace _1st_try
         private RichTextBox richTextBox1;
         private RadioButton radioButton1;
         private RadioButton radioButton2;
+        private Label label2;
     }
 }
