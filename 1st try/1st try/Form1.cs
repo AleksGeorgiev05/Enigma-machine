@@ -17,9 +17,14 @@ namespace _1st_try
         private List<char> rotor_1 = new List<char> { 'N', 'O', 'C', 'W', 'L', 'H', 'P', 'R', 'K', 'Y', 'U', 'Q', 'V', 'I', 'J', 'D', 'E', 'M', 'G', 'F', 'T', 'A', 'B', 'S', 'Z', 'X' };
         private List<char> rotor_2 = new List<char> { 'C', 'E', 'J', 'A', 'Q', 'V', 'D', 'G', 'U', 'B', 'O', 'T', 'X', 'P', 'S', 'I', 'Y', 'F', 'N', 'M', 'W', 'Z', 'R', 'H', 'K', 'L' };
         private List<char> rotor_3 = new List<char> { 'S', 'V', 'E', 'Z', 'G', 'Y', 'I', 'K', 'J', 'N', 'W', 'T', 'B', 'O', 'M', 'Q', 'P', 'H', 'A', 'U', 'C', 'X', 'D', 'L', 'F', 'R' };
-        bool flag_comboBox1 = false;
-        bool flag_comboBox2 = false;
-        bool flag_comboBox3 = false;
+
+        private Dictionary<int, int> rotor3_rotor2 = new Dictionary<int, int>();
+        private Dictionary<int, int> rotor2_rotor1 = new Dictionary<int, int>();
+        private Dictionary<int, int> rotor1_rotor1 = new Dictionary<int, int>();
+
+        private bool flag_comboBox1 = false;
+        private bool flag_comboBox2 = false;
+        private bool flag_comboBox3 = false;
 
         #region Methods
         private List<char> RotateRotor(List<char> rotor, int rotations)
@@ -66,7 +71,10 @@ namespace _1st_try
         {
             if (!flag_comboBox1)
             {
-                RotateRotor(rotor_1, int.Parse(comboBox1.Text));
+                if (comboBox1.Text != "1")
+                {
+                    RotateRotor(rotor_1, int.Parse(comboBox1.Text) - 1);
+                }
                 flag_comboBox1 = true;
             }
             else
@@ -76,21 +84,27 @@ namespace _1st_try
         }
         private void comboBox2_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            if (!flag_comboBox2)
+           if (!flag_comboBox2)
             {
-                RotateRotor(rotor_2, int.Parse(comboBox2.Text));
+                if (comboBox2.Text != "1")
+                {
+                    RotateRotor(rotor_2, int.Parse(comboBox2.Text) - 1);
+                }
                 flag_comboBox2 = true;
             }
             else
             {
-                RotateRotor(rotor_3, 1);
+                RotateRotor(rotor_2, 1);
             }
         }
         private void comboBox3_SelectedIndexChanged_2(object sender, EventArgs e)
         {
-            if(!flag_comboBox3)
+            if (!flag_comboBox3)
             {
-                RotateRotor(rotor_3, int.Parse(comboBox3.Text));
+                if (comboBox3.Text != "1")
+                {
+                    RotateRotor(rotor_3, int.Parse(comboBox3.Text) - 1);
+                }
                 flag_comboBox3 = true;
             }
             else
