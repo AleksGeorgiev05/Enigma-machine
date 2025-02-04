@@ -18,9 +18,14 @@ namespace _1st_try
         private List<char> rotor_2 = new List<char> { 'C', 'E', 'J', 'A', 'Q', 'V', 'D', 'G', 'U', 'B', 'O', 'T', 'X', 'P', 'S', 'I', 'Y', 'F', 'N', 'M', 'W', 'Z', 'R', 'H', 'K', 'L' };
         private List<char> rotor_3 = new List<char> { 'S', 'V', 'E', 'Z', 'G', 'Y', 'I', 'K', 'J', 'N', 'W', 'T', 'B', 'O', 'M', 'Q', 'P', 'H', 'A', 'U', 'C', 'X', 'D', 'L', 'F', 'R' };
 
-        private Dictionary<int, int> rotor3_rotor2 = new Dictionary<int, int>();
-        private Dictionary<int, int> rotor2_rotor1 = new Dictionary<int, int>();
-        private Dictionary<int, int> rotor1_rotor1 = new Dictionary<int, int>();
+        private Dictionary<int, int> rotor3_rotor2 = new Dictionary<int, int> { {10, 12}, {2, 22}, {18, 9}, {23, 21}, {21, 11}, {22, 19}, {5, 18}, {13, 23}, {16, 1}, {1, 13},
+        {17, 5}, {3, 6}, {9, 2}, {8, 8}, {15, 14}, {12, 15}, {20, 10}, {14, 17}, {4, 16}, {7, 25},
+        {19, 24}, {11, 20}, {24, 4}, {6, 3}, {25, 7}, {0, 0}};
+        private Dictionary<int, int> rotor2_rotor1 = new Dictionary<int, int> {{6, 6}, {19, 23}, {20, 21}, {23, 16}, {13, 11}, {15, 9}, {16, 17}, {1, 20}, {7, 13}, {8, 14},
+        {2, 5}, {3, 19}, {18, 22}, {0, 7}, {12, 25}, {24, 10}, {10, 4}, {5, 1}, {25, 24}, {17, 2},
+        {14, 15}, {21, 0}, {11, 12}, {4, 18}, {22, 3}, {9, 8}};
+        private Dictionary<int, int> rotor1_rotor1 = new Dictionary<int, int> {{3, 5}, {8, 9}, {4, 11}, {1, 12}, {10, 13}, {2, 14}, {6, 15}, {7, 16}, {17, 18}, {19, 20},
+        {21, 22}, {23, 24}, {25, 0}, {15, 22}, {14, 2}, {10, 11}, {0, 17}, {6, 3}, {8, 16}, {8, 16}, {20, 1}, {25, 18}, {4, 12}, {13, 9 }, {7, 24}, {21, 23}, {5,19 }};
 
         private bool flag_comboBox1 = false;
         private bool flag_comboBox2 = false;
@@ -84,7 +89,7 @@ namespace _1st_try
         }
         private void comboBox2_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-           if (!flag_comboBox2)
+            if (!flag_comboBox2)
             {
                 if (comboBox2.Text != "1")
                 {
