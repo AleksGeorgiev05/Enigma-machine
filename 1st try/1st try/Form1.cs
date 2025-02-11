@@ -1,7 +1,7 @@
 /*TO DO
 
-- New message button which clears label5 and richtextBox and enables radioButtons and comboBoxes 
-- Dictionary to store the relations between the rotors
+- "New message" button which clears label5 and richtextBox and enables radioButtons and comboBoxes 
+- Multiple language UI
 */
 using System.Security.Cryptography;
 using System.Windows.Forms;
@@ -18,14 +18,12 @@ namespace _1st_try
         private List<char> rotor_2 = new List<char> { 'C', 'E', 'J', 'A', 'Q', 'V', 'D', 'G', 'U', 'B', 'O', 'T', 'X', 'P', 'S', 'I', 'Y', 'F', 'N', 'M', 'W', 'Z', 'R', 'H', 'K', 'L' };
         private List<char> rotor_3 = new List<char> { 'S', 'V', 'E', 'Z', 'G', 'Y', 'I', 'K', 'J', 'N', 'W', 'T', 'B', 'O', 'M', 'Q', 'P', 'H', 'A', 'U', 'C', 'X', 'D', 'L', 'F', 'R' };
 
-        private Dictionary<int, int> rotor3_rotor2 = new Dictionary<int, int> { {10, 12}, {2, 22}, {18, 9}, {23, 21}, {21, 11}, {22, 19}, {5, 18}, {13, 23}, {16, 1}, {1, 13},
-        {17, 5}, {3, 6}, {9, 2}, {8, 8}, {15, 14}, {12, 15}, {20, 10}, {14, 17}, {4, 16}, {7, 25},
-        {19, 24}, {11, 20}, {24, 4}, {6, 3}, {25, 7}, {0, 0}};
+        private Dictionary<int, int> rotor3_rotor2 = new Dictionary<int, int> {{10, 12}, {2, 22}, {18, 9}, {23, 21}, {21, 11}, {22, 19}, {5, 18}, {13, 23}, {16, 1}, {1, 13},
+        {17, 5}, {3, 6}, {9, 2}, {8, 8}, {15, 14}, {12, 15}, {20, 10}, {14, 17}, {4, 16}, {7, 25}, {19, 24}, {11, 20}, {24, 4}, {6, 3}, {25, 7}, {0, 0}};
         private Dictionary<int, int> rotor2_rotor1 = new Dictionary<int, int> {{6, 6}, {19, 23}, {20, 21}, {23, 16}, {13, 11}, {15, 9}, {16, 17}, {1, 20}, {7, 13}, {8, 14},
-        {2, 5}, {3, 19}, {18, 22}, {0, 7}, {12, 25}, {24, 10}, {10, 4}, {5, 1}, {25, 24}, {17, 2},
-        {14, 15}, {21, 0}, {11, 12}, {4, 18}, {22, 3}, {9, 8}};
-        private Dictionary<int, int> rotor1_rotor1 = new Dictionary<int, int> {{3, 5}, {8, 9}, {4, 11}, {1, 12}, {10, 13}, {2, 14}, {6, 15}, {7, 16}, {17, 18}, {19, 20},
-        {21, 22}, {23, 24}, {25, 0}, {15, 22}, {14, 2}, {10, 11}, {0, 17}, {6, 3}, {8, 16}, {8, 16}, {20, 1}, {25, 18}, {4, 12}, {13, 9 }, {7, 24}, {21, 23}, {5,19 }};
+        {2, 5}, {3, 19}, {18, 22}, {0, 7}, {12, 25}, {24, 10}, {10, 4}, {5, 1}, {25, 24}, {17, 2}, {14, 15}, {21, 0}, {11, 12}, {4, 18}, {22, 3}, {9, 8}};
+        private Dictionary<int, int> rotor1_rotor1 = new Dictionary<int, int> {{3, 5}, {24, 8}, {4, 11}, {1, 12}, {13, 10}, {2, 14}, {15 , 6}, {16, 7}, {23, 9},
+        {19, 21}, {20, 22}, {0, 25}, {22, 17}};
 
         private bool flag_comboBox1 = false;
         private bool flag_comboBox2 = false;
@@ -132,6 +130,7 @@ namespace _1st_try
                     || label5.Text == "Your encrypted message will show here!")
                 {
                     label5.Text = "";
+                    richTextBox1.Text = ""; //Not tested
                 }
 
                 //Rotors rotation
@@ -160,8 +159,16 @@ namespace _1st_try
                 else comboBox3.Text = (int.Parse(comboBox3.Text) + 1).ToString();
 
                 //Ecnryption logic
-                char letter = richTextBox1.Text[richTextBox1.TextLength - 1];
-                label5.Text += letter;
+                if (richTextBox1.Text == "")
+                {
+                    richTextBox1.Text = "a";
+                }
+                else
+                {
+                    char letter = richTextBox1.Text[richTextBox1.TextLength - 1];
+                    label5.Text += letter;
+                }
+                
             }
             else if (flag_comboBox1 && flag_comboBox2 && flag_comboBox3 && radioButton2.Checked)
             {
