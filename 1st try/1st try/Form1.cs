@@ -127,7 +127,7 @@ namespace _1st_try
                 radioButton2.Enabled = false;
 
                 if (label5.Text == "Make sure that the you have checked encryption or decryption\nand rotors are set to the right setting."
-                    || label5.Text == "Your encrypted message will show here!")
+                    || label5.Text == "Your message will show here!")
                 {
                     label5.Text = "";
                     richTextBox1.Text = ""; //Not tested
@@ -154,25 +154,36 @@ namespace _1st_try
 
                 if (int.Parse(comboBox3.Text) == 26)
                 {
-                    comboBox3.Text = 1.ToString();//Previous -> comboBox3.Text = 1.ToString();
+                    comboBox3.Text = 1.ToString();
                 }
                 else comboBox3.Text = (int.Parse(comboBox3.Text) + 1).ToString();
 
                 //Ecnryption logic
-                if (richTextBox1.Text == "")
-                {
-                    richTextBox1.Text = "a";
-                }
-                else
+                if (richTextBox1.Text != "")
                 {
                     char letter = richTextBox1.Text[richTextBox1.TextLength - 1];
                     label5.Text += letter;
+
+                    foreach (var item in richTextBox1.Text.ToUpper())
+                    {
+                        char index = (char) rotor_3.IndexOf(item);
+                        char value_rotor2_e = (char) rotor2_rotor1[rotor3_rotor2[index]];
+                        char value_rotor1_e;
+
+                        if (rotor1_rotor1.ContainsKey(value_rotor2_e))
+                        {
+                            value_rotor1_e = (char) rotor1_rotor1[value_rotor2_e];
+                        }
+                        else {
+                            value_rotor1_e = (char) rotor1_rotor1.value(value_rotor2_e);
+                        }
+                    }
                 }
-                
+
             }
             else if (flag_comboBox1 && flag_comboBox2 && flag_comboBox3 && radioButton2.Checked)
             {
-                //Decription not done
+                //Decryption not done
 
                 //Rotors rotation
                 if (int.Parse(comboBox1.Text) == 26)
@@ -229,6 +240,24 @@ namespace _1st_try
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Text = string.Empty;
+            label5.Text = "Your message will show here!";
+            comboBox1.Enabled = true;
+            comboBox2.Enabled = true;
+            comboBox3.Enabled = true;
+            radioButton1.Enabled = true;
+            radioButton2.Enabled = true;
+
+            comboBox1.SelectedIndex = -1;
+            comboBox2.SelectedIndex = -1;
+            comboBox3.SelectedIndex = -1;
+
+            radioButton1.Checked = false;
+            radioButton2.Checked = false;
         }
     }
 }
