@@ -44,9 +44,9 @@ namespace _1st_try
             // 
             label5.AccessibleRole = AccessibleRole.ButtonMenu;
             label5.AutoSize = true;
-            label5.Location = new Point(329, 263);
+            label5.Location = new Point(270, 166);
             label5.Name = "label5";
-            label5.Size = new Size(202, 20);
+            label5.Size = new Size(161, 15);
             label5.TabIndex = 9;
             label5.Text = "Your message will show here!";
             // 
@@ -55,10 +55,9 @@ namespace _1st_try
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox1.FormattingEnabled = true;
             comboBox1.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26" });
-            comboBox1.Location = new Point(112, 168);
-            comboBox1.Margin = new Padding(3, 4, 3, 4);
+            comboBox1.Location = new Point(80, 95);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(138, 28);
+            comboBox1.Size = new Size(121, 23);
             comboBox1.TabIndex = 10;
             comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
@@ -67,10 +66,9 @@ namespace _1st_try
             comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox2.FormattingEnabled = true;
             comboBox2.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26" });
-            comboBox2.Location = new Point(302, 168);
-            comboBox2.Margin = new Padding(3, 4, 3, 4);
+            comboBox2.Location = new Point(271, 95);
             comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(138, 28);
+            comboBox2.Size = new Size(121, 23);
             comboBox2.TabIndex = 11;
             comboBox2.SelectedIndexChanged += comboBox2_SelectedIndexChanged_1;
             // 
@@ -79,29 +77,27 @@ namespace _1st_try
             comboBox3.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox3.FormattingEnabled = true;
             comboBox3.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26" });
-            comboBox3.Location = new Point(475, 168);
-            comboBox3.Margin = new Padding(3, 4, 3, 4);
+            comboBox3.Location = new Point(465, 95);
             comboBox3.Name = "comboBox3";
-            comboBox3.Size = new Size(138, 28);
+            comboBox3.Size = new Size(121, 23);
             comboBox3.TabIndex = 12;
             comboBox3.SelectedIndexChanged += comboBox3_SelectedIndexChanged_2;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(112, 263);
+            label1.Location = new Point(80, 166);
             label1.Name = "label1";
-            label1.Size = new Size(154, 20);
+            label1.Size = new Size(122, 15);
             label1.TabIndex = 14;
             label1.Text = "Enter your text below!";
             label1.Click += label1_Click;
             // 
             // richTextBox1
             // 
-            richTextBox1.Location = new Point(111, 304);
-            richTextBox1.Margin = new Padding(3, 4, 3, 4);
+            richTextBox1.Location = new Point(79, 197);
             richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(140, 152);
+            richTextBox1.Size = new Size(122, 115);
             richTextBox1.TabIndex = 15;
             richTextBox1.Text = "";
             richTextBox1.TextChanged += richTextBox1_TextChanged;
@@ -109,9 +105,10 @@ namespace _1st_try
             // radioButton1
             // 
             radioButton1.AutoSize = true;
-            radioButton1.Location = new Point(111, 99);
+            radioButton1.Location = new Point(79, 43);
+            radioButton1.Margin = new Padding(3, 2, 3, 2);
             radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(100, 24);
+            radioButton1.Size = new Size(82, 19);
             radioButton1.TabIndex = 16;
             radioButton1.TabStop = true;
             radioButton1.Text = "Encryption";
@@ -121,9 +118,10 @@ namespace _1st_try
             // radioButton2
             // 
             radioButton2.AutoSize = true;
-            radioButton2.Location = new Point(254, 99);
+            radioButton2.Location = new Point(204, 43);
+            radioButton2.Margin = new Padding(3, 2, 3, 2);
             radioButton2.Name = "radioButton2";
-            radioButton2.Size = new Size(103, 24);
+            radioButton2.Size = new Size(83, 19);
             radioButton2.TabIndex = 17;
             radioButton2.TabStop = true;
             radioButton2.Text = "Decryption";
@@ -132,9 +130,10 @@ namespace _1st_try
             // 
             // button1
             // 
-            button1.Location = new Point(614, 435);
+            button1.Location = new Point(81, 336);
+            button1.Margin = new Padding(3, 2, 3, 2);
             button1.Name = "button1";
-            button1.Size = new Size(188, 70);
+            button1.Size = new Size(121, 28);
             button1.TabIndex = 18;
             button1.Text = "New Message";
             button1.UseVisualStyleBackColor = true;
@@ -142,10 +141,10 @@ namespace _1st_try
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
-            ClientSize = new Size(914, 600);
+            ClientSize = new Size(800, 450);
             Controls.Add(button1);
             Controls.Add(radioButton2);
             Controls.Add(radioButton1);
@@ -155,7 +154,6 @@ namespace _1st_try
             Controls.Add(comboBox2);
             Controls.Add(comboBox1);
             Controls.Add(label5);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "Form1";
             Text = "Form1";
             Load += Form1_Load;

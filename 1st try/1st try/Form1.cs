@@ -3,6 +3,7 @@
 - "New message" button which clears label5 and richtextBox and enables radioButtons and comboBoxes 
 - Multiple language UI
 */
+using System.Collections;
 using System.Security.Cryptography;
 using System.Windows.Forms;
 namespace _1st_try
@@ -17,13 +18,7 @@ namespace _1st_try
         private List<char> rotor_1 = new List<char> { 'N', 'O', 'C', 'W', 'L', 'H', 'P', 'R', 'K', 'Y', 'U', 'Q', 'V', 'I', 'J', 'D', 'E', 'M', 'G', 'F', 'T', 'A', 'B', 'S', 'Z', 'X' };
         private List<char> rotor_2 = new List<char> { 'C', 'E', 'J', 'A', 'Q', 'V', 'D', 'G', 'U', 'B', 'O', 'T', 'X', 'P', 'S', 'I', 'Y', 'F', 'N', 'M', 'W', 'Z', 'R', 'H', 'K', 'L' };
         private List<char> rotor_3 = new List<char> { 'S', 'V', 'E', 'Z', 'G', 'Y', 'I', 'K', 'J', 'N', 'W', 'T', 'B', 'O', 'M', 'Q', 'P', 'H', 'A', 'U', 'C', 'X', 'D', 'L', 'F', 'R' };
-
-        private Dictionary<int, int> rotor3_rotor2 = new Dictionary<int, int> {{10, 12}, {2, 22}, {18, 9}, {23, 21}, {21, 11}, {22, 19}, {5, 18}, {13, 23}, {16, 1}, {1, 13},
-        {17, 5}, {3, 6}, {9, 2}, {8, 8}, {15, 14}, {12, 15}, {20, 10}, {14, 17}, {4, 16}, {7, 25}, {19, 24}, {11, 20}, {24, 4}, {6, 3}, {25, 7}, {0, 0}};
-        private Dictionary<int, int> rotor2_rotor1 = new Dictionary<int, int> {{6, 6}, {19, 23}, {20, 21}, {23, 16}, {13, 11}, {15, 9}, {16, 17}, {1, 20}, {7, 13}, {8, 14},
-        {2, 5}, {3, 19}, {18, 22}, {0, 7}, {12, 25}, {24, 10}, {10, 4}, {5, 1}, {25, 24}, {17, 2}, {14, 15}, {21, 0}, {11, 12}, {4, 18}, {22, 3}, {9, 8}};
-        private Dictionary<int, int> rotor1_rotor1 = new Dictionary<int, int> {{3, 5}, {24, 8}, {4, 11}, {1, 12}, {13, 10}, {2, 14}, {15 , 6}, {16, 7}, {23, 9},
-        {19, 21}, {20, 22}, {0, 25}, {22, 17}};
+        private Dictionary<int, int> Reflector = new Dictionary<int, int> { { 19, 25 }, { 22, 16 }, { 3, 10 }, { 6, 8 }, { 20, 12 }, { 1, 5 }, { 24, 13 }, { 2, 17 }, { 21, 11 }, { 14, 9 }, { 18, 7 }, { 4, 15 }, { 0, 23 } };
 
         private bool flag_comboBox1 = false;
         private bool flag_comboBox2 = false;
@@ -129,8 +124,11 @@ namespace _1st_try
                 if (label5.Text == "Make sure that the you have checked encryption or decryption\nand rotors are set to the right setting."
                     || label5.Text == "Your message will show here!")
                 {
+                    if (label5.Text == "Make sure that the you have checked encryption or decryption\nand rotors are set to the right setting.")
+                    {
+                        richTextBox1.Text = "";
+                    }
                     label5.Text = "";
-                    richTextBox1.Text = ""; //Not tested
                 }
 
                 //Rotors rotation
@@ -161,25 +159,34 @@ namespace _1st_try
                 //Ecnryption logic
                 if (richTextBox1.Text != "")
                 {
-                    char letter = richTextBox1.Text[richTextBox1.TextLength - 1];
-                    label5.Text += letter;
+                    string currentLetter = richTextBox1.Text[richTextBox1.Text.Length - 1].ToString().ToUpper();
 
-                    foreach (var item in richTextBox1.Text.ToUpper())
+                    for (int i = 0; i < rotor_3.Count; i++)
                     {
-                        char index = (char) rotor_3.IndexOf(item);
-                        char value_rotor2_e = (char) rotor2_rotor1[rotor3_rotor2[index]];
-                        char value_rotor1_e;
-
-                        if (rotor1_rotor1.ContainsKey(value_rotor2_e))
+                        if (rotor_3[i].ToString() == currentLetter)
                         {
-                            value_rotor1_e = (char) rotor1_rotor1[value_rotor2_e];
-                        }
-                        else {
-                            value_rotor1_e = (char) rotor1_rotor1.value(value_rotor2_e);
+                            currentLetter = i.ToString();
+                            break;
                         }
                     }
-                }
 
+                    if (Reflector.ContainsKey(int.Parse(currentLetter)))
+                    {
+                        currentLetter = Reflector[int.Parse(currentLetter)].ToString();
+                    }
+                    else
+                    {
+                        for (int i = 0; i < Reflector.Count; i++)
+                        {
+                            if (Reflector[i] == int.Parse(currentLetter))
+                            {
+                                currentLetter = Reflector[i].ToString();
+                            }
+                        }
+                    }
+                    //not tested
+                    label5.Text += rotor_3[int.Parse(currentLetter)];
+                }
             }
             else if (flag_comboBox1 && flag_comboBox2 && flag_comboBox3 && radioButton2.Checked)
             {
@@ -210,9 +217,36 @@ namespace _1st_try
                 }
                 comboBox3.Text = (int.Parse(comboBox3.Text) - 1).ToString();
 
-                //Encryption logic
-                char letter = label5.Text[label5.Text.Length - 1];
-                label5.Text += letter;
+                //Decryption logic
+                if (richTextBox1.Text != "")
+                {
+                    //Decryption not tested
+                    /*foreach (var item in richTextBox1.Text.ToUpper())
+                    {
+                        char currentLetter = (char)rotor_3.IndexOf(item);
+                        currentLetter = (char)rotor2_rotor1[rotor3_rotor2[currentLetter]];
+
+                        if (rotor1_rotor1.ContainsKey(currentLetter))
+                        {
+                            currentLetter = (char)rotor1_rotor1[currentLetter];
+                            break;
+                        }
+                        else
+                        {
+                            foreach (var key in rotor_1)
+                            {
+                                if (rotor1_rotor1[key] == currentLetter)
+                                {
+                                    currentLetter = key;
+                                    break;
+                                }
+                            }
+                        }
+
+                        currentLetter = (char)rotor2_rotor1[currentLetter];
+                        currentLetter = (char)rotor3_rotor2[currentLetter];
+                    }*/
+                }
 
             }
             else
@@ -246,6 +280,7 @@ namespace _1st_try
         {
             richTextBox1.Text = string.Empty;
             label5.Text = "Your message will show here!";
+
             comboBox1.Enabled = true;
             comboBox2.Enabled = true;
             comboBox3.Enabled = true;
@@ -255,7 +290,6 @@ namespace _1st_try
             comboBox1.SelectedIndex = -1;
             comboBox2.SelectedIndex = -1;
             comboBox3.SelectedIndex = -1;
-
             radioButton1.Checked = false;
             radioButton2.Checked = false;
         }
