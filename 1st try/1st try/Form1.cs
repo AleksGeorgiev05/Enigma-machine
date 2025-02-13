@@ -200,7 +200,7 @@ namespace _1st_try
 
                     currentLetter = rotor_2[int.Parse(rotor3_rotor2[int.Parse(currentLetter)].ToString())].ToString();
 
-                    for (int i = 0; i < 25; i++)
+                    for (int i = 0; i < rotor_2.Count; i++)
                     {
                         if (rotor_2[i].ToString() == currentLetter)
                         {
@@ -209,21 +209,41 @@ namespace _1st_try
                         }
                     }
 
-                    if (Reflector.ContainsKey(int.Parse(currentLetter)))
+                    currentLetter = rotor_1[int.Parse(rotor2_rotor1[int.Parse(currentLetter)].ToString())].ToString();
+
+                    for (int i = 0; i < rotor_1.Count; i++)
                     {
-                        currentLetter = Reflector[int.Parse(currentLetter)].ToString();
-                    }
-                    else
-                    {
-                        for (int i = 0; i < Reflector.Count; i++)
+                        if (currentLetter == rotor_1[i].ToString())
                         {
-                            if (Reflector[i] == int.Parse(currentLetter))
+                            currentLetter = i.ToString();
+                            break;
+                        }
+                    }
+
+                    try
+                    {
+                        if (Reflector.ContainsKey(int.Parse(currentLetter)))
+                        {
+                            currentLetter = Reflector[int.Parse(currentLetter)].ToString();
+                        }
+                        else
+                        {
+                            for (int i = 0; i < Reflector.Count; i++)
                             {
-                                currentLetter = Reflector[i].ToString();
+                                if (Reflector[i] == int.Parse(currentLetter))//The given key is not in the dictionary
+                                {
+                                    currentLetter = Reflector[i].ToString();
+                                    break;
+                                }
                             }
                         }
                     }
-                    //not tested
+                    catch (Exception)
+                    {
+
+                        throw;
+                    }
+
                     label5.Text += rotor_3[int.Parse(currentLetter)];
                 }
             }
