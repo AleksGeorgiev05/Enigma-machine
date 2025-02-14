@@ -22,7 +22,7 @@ namespace _1st_try
         private List<char> rotor_1 = new List<char>(); //{ 'N', 'O', 'C', 'W', 'L', 'H', 'P', 'R', 'K', 'Y', 'U', 'Q', 'V', 'I', 'J', 'D', 'E', 'M', 'G', 'F', 'T', 'A', 'B', 'S', 'Z', 'X' };
         private List<char> rotor_2 = new List<char>(); //{ 'C', 'E', 'J', 'A', 'Q', 'V', 'D', 'G', 'U', 'B', 'O', 'T', 'X', 'P', 'S', 'I', 'Y', 'F', 'N', 'M', 'W', 'Z', 'R', 'H', 'K', 'L' };
         private List<char> rotor_3 = new List<char>(); //{ 'S', 'V', 'E', 'Z', 'G', 'Y', 'I', 'K', 'J', 'N', 'W', 'T', 'B', 'O', 'M', 'Q', 'P', 'H', 'A', 'U', 'C', 'X', 'D', 'L', 'F', 'R' };
-        
+
         private Dictionary<int, int> rotor3_rotor2 = new Dictionary<int, int> {{10, 12}, {2, 22}, {18, 9}, {23, 21}, {21, 11}, {22, 19}, {5, 18}, {13, 23}, {16, 1}, {1, 13},
         {17, 5}, {3, 6}, {9, 2}, {8, 8}, {15, 14}, {12, 15}, {20, 10}, {14, 17}, {4, 16}, {7, 25}, {19, 24}, {11, 20}, {24, 4}, {6, 3}, {25, 7}, {0, 0}};
         private Dictionary<int, int> rotor2_rotor1 = new Dictionary<int, int> {{6, 6}, {19, 23}, {20, 21}, {23, 16}, {13, 11}, {15, 9}, {16, 17}, {1, 20}, {7, 13}, {8, 14},
@@ -187,64 +187,51 @@ namespace _1st_try
                 //Ecnryption logic
                 if (richTextBox1.Text != "")
                 {
-                    string currentLetter = richTextBox1.Text[richTextBox1.Text.Length - 1].ToString().ToUpper();
+                    char currentLetter = Char.ToUpper(richTextBox1.Text[richTextBox1.Text.Length - 1]);
 
                     for (int i = 0; i < rotor_3.Count; i++)
                     {
-                        if (rotor_3[i].ToString() == currentLetter)
+                        if (rotor_3[i] == currentLetter)
                         {
-                            currentLetter = i.ToString();
+                            currentLetter = (char)i;
                             break;
                         }
                     }
 
-                    currentLetter = rotor_2[int.Parse(rotor3_rotor2[int.Parse(currentLetter)].ToString())].ToString();
+                    currentLetter = rotor_2[int.Parse(rotor3_rotor2[currentLetter].ToString())];
 
                     for (int i = 0; i < rotor_2.Count; i++)
                     {
-                        if (rotor_2[i].ToString() == currentLetter)
+                        if (rotor_2[i] == currentLetter)
                         {
-                            currentLetter = i.ToString();
+                            currentLetter = (char)i;
                             break;
                         }
                     }
 
-                    currentLetter = rotor_1[int.Parse(rotor2_rotor1[int.Parse(currentLetter)].ToString())].ToString();
+                    currentLetter = rotor_1[int.Parse(rotor2_rotor1[currentLetter].ToString())];
 
                     for (int i = 0; i < rotor_1.Count; i++)
                     {
-                        if (currentLetter == rotor_1[i].ToString())
+                        if (currentLetter == rotor_1[i])
                         {
-                            currentLetter = i.ToString();
+                            currentLetter = (char)i;
                             break;
                         }
                     }
 
-                    try
+                    if (Reflector.ContainsKey(int.Parse(currentLetter.ToString())))
                     {
-                        if (Reflector.ContainsKey(int.Parse(currentLetter)))
-                        {
-                            currentLetter = Reflector[int.Parse(currentLetter)].ToString();
-                        }
-                        else
-                        {
-                            for (int i = 0; i < Reflector.Count; i++)
-                            {
-                                if (Reflector[i] == int.Parse(currentLetter))//The given key is not in the dictionary
-                                {
-                                    currentLetter = Reflector[i].ToString();
-                                    break;
-                                }
-                            }
-                        }
+                        currentLetter = (char)Reflector[int.Parse(currentLetter.ToString())];
                     }
-                    catch (Exception)
+                    else
                     {
-
-                        throw;
+                        currentLetter = (char)Reflector.FirstOrDefault(x => x.Value == currentLetter).Key;
                     }
 
-                    label5.Text += rotor_3[int.Parse(currentLetter)];
+                   // currentLetter = rotor_1[int.Parse(rotor3_rotor2[currentLetter].ToString())];
+
+                    label5.Text += rotor_3[int.Parse(currentLetter.ToString())];
                 }
             }
             else if (flag_comboBox1 && flag_comboBox2 && flag_comboBox3 && radioButton2.Checked)
