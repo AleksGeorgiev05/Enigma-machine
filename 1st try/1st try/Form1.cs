@@ -93,6 +93,7 @@ namespace _1st_try
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             if (!flag_comboBox1)
             {
                 if (comboBox1.Text != "1")
@@ -105,9 +106,12 @@ namespace _1st_try
             {
                 RotateRotor(rotor_1, 1);
             }
+
+
         }
         private void comboBox2_SelectedIndexChanged_1(object sender, EventArgs e)
         {
+
             if (!flag_comboBox2)
             {
                 if (comboBox2.Text != "1")
@@ -123,23 +127,40 @@ namespace _1st_try
         }
         private void comboBox3_SelectedIndexChanged_2(object sender, EventArgs e)
         {
-            if (!flag_comboBox3)
+            if (radioButton1.Checked)
             {
-                if (comboBox3.Text != "1")
+                if (!flag_comboBox3)
                 {
-                    RotateRotor(rotor_3, int.Parse(comboBox3.Text) - 1);
+                    if (comboBox3.Text != "1")
+                    {
+                        RotateRotor(rotor_3, int.Parse(comboBox3.Text) - 1);
+                    }
+                    flag_comboBox3 = true;
                 }
-                flag_comboBox3 = true;
+                else
+                {
+                    RotateRotor(rotor_3, 1);
+                }
             }
-            else
+            else if (radioButton2.Checked)
             {
-                RotateRotor(rotor_3, 1);
+                if (!flag_comboBox3)
+                {
+                    if (comboBox3.Text != "1")
+                    {
+                        RotateRotor(rotor_3, int.Parse(comboBox3.Text) - 1);
+                    }
+                    flag_comboBox3 = true;
+                }
+                else
+                {
+                    RotateRotor(rotor_3, 1);
+                }
             }
         }
-
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
-            if (flag_comboBox1 && flag_comboBox2 && flag_comboBox3 && radioButton1.Checked)
+            if (flag_comboBox1 && flag_comboBox2 && flag_comboBox3 && (radioButton1.Checked || radioButton2.Checked))
             {
                 comboBox1.Enabled = false;
                 comboBox2.Enabled = false;
@@ -157,132 +178,112 @@ namespace _1st_try
                     label5.Text = "";
                 }
 
-                //Rotors rotation
-                if (int.Parse(comboBox1.Text) == 26 && int.Parse(comboBox2.Text) % 4 == 0 && int.Parse(comboBox3.Text) % 6 == 0)
+                if (radioButton1.Checked)
                 {
-                    comboBox1.Text = 1.ToString();
-                }
-                else if (int.Parse(comboBox2.Text) % 4 == 0 && int.Parse(comboBox3.Text) % 6 == 0)
-                {
-                    comboBox1.Text = (int.Parse(comboBox1.Text) + 1).ToString();
-                }
-
-                if (int.Parse(comboBox2.Text) == 26 && int.Parse(comboBox3.Text) % 6 == 0)//Previous -> int.Parse(comboBox2.Text) == 26
-                {
-                    comboBox2.Text = 1.ToString();
-                }
-                else if (int.Parse(comboBox3.Text) % 6 == 0)
-                {
-                    comboBox2.Text = (int.Parse(comboBox2.Text) + 1).ToString();
-                }
-
-                if (int.Parse(comboBox3.Text) == 26)
-                {
-                    comboBox3.Text = 1.ToString();
-                }
-                else comboBox3.Text = (int.Parse(comboBox3.Text) + 1).ToString();
-
-                //Ecnryption logic
-                if (richTextBox1.Text != "")
-                {
-                    char currentLetter = Char.ToUpper(richTextBox1.Text[richTextBox1.Text.Length - 1]);
-
-                    for (int i = 0; i < rotor_3.Count; i++)
+                    #region Encryption
+                    //Rotors rotation
+                    if (int.Parse(comboBox1.Text) == 26 && int.Parse(comboBox2.Text) % 4 == 0 && int.Parse(comboBox3.Text) % 6 == 0)
                     {
-                        if (rotor_3[i] == currentLetter)
-                        {
-                            currentLetter = (char)i;
-                            break;
-                        }
+                        comboBox1.Text = 1.ToString();
+                    }
+                    else if (int.Parse(comboBox2.Text) % 4 == 0 && int.Parse(comboBox3.Text) % 6 == 0)
+                    {
+                        comboBox1.Text = (int.Parse(comboBox1.Text) + 1).ToString();
                     }
 
-                    currentLetter = (char)rotor3_rotor2[currentLetter];
-
-                    currentLetter = (char)rotor2_rotor1[currentLetter];
-
-
-                    if (Reflector.ContainsKey(currentLetter))
+                    if (int.Parse(comboBox2.Text) == 26 && int.Parse(comboBox3.Text) % 6 == 0)
                     {
-                        currentLetter = (char)Reflector[currentLetter];
+                        comboBox2.Text = 1.ToString();
+                    }
+                    else if (int.Parse(comboBox3.Text) % 6 == 0)
+                    {
+                        comboBox2.Text = (int.Parse(comboBox2.Text) + 1).ToString();
+                    }
+
+                    if (int.Parse(comboBox3.Text) == 26)
+                    {
+                        comboBox3.Text = 1.ToString();
                     }
                     else
+                        comboBox3.Text = (int.Parse(comboBox3.Text) + 1).ToString();
+
+                    //Ecnryption logic
+                    if (richTextBox1.Text != "")
                     {
-                        currentLetter = (char)Reflector.FirstOrDefault(x => x.Value == currentLetter).Key;
-                    }
+                        char currentLetter = Char.ToUpper(richTextBox1.Text[richTextBox1.Text.Length - 1]);
 
-                    currentLetter = (char)rotor2_rotor1[currentLetter];
-
-                    currentLetter = (char)rotor3_rotor2[currentLetter];
-
-                    if (Char.IsUpper(richTextBox1.Text[richTextBox1.Text.Length - 1]))
-                    {
-                        label5.Text += rotor_3[currentLetter];
-                    }
-                    else 
-                        label5.Text += char.ToLower(rotor_3[currentLetter]);
-
-                }
-            }
-            else if (flag_comboBox1 && flag_comboBox2 && flag_comboBox3 && radioButton2.Checked)
-            {
-                //Decryption not done
-
-                //Rotors rotation
-                if (int.Parse(comboBox1.Text) == 26)
-                {
-                    comboBox1.Text = 1.ToString();
-                }
-                else if (int.Parse(comboBox2.Text) % 4 == 0 && int.Parse(comboBox3.Text) % 6 == 0)
-                {
-                    comboBox1.Text = (int.Parse(comboBox1.Text) - 1).ToString();
-                }
-
-                if (int.Parse(comboBox2.Text) == 26)
-                {
-                    comboBox2.Text = 1.ToString();
-                }
-                else if (int.Parse(comboBox3.Text) % 6 == 0)
-                {
-                    comboBox2.Text = (int.Parse(comboBox2.Text) - 1).ToString();
-                }
-
-                if (int.Parse(comboBox3.Text) == 26)
-                {
-                    comboBox3.Text = 1.ToString();
-                }
-                comboBox3.Text = (int.Parse(comboBox3.Text) - 1).ToString();
-
-                //Decryption logic
-                if (richTextBox1.Text != "")
-                {
-                    //Decryption not tested
-                    /*foreach (var item in richTextBox1.Text.ToUpper())
-                    {
-                        char currentLetter = (char)rotor_3.IndexOf(item);
-                        currentLetter = (char)rotor2_rotor1[rotor3_rotor2[currentLetter]];
-
-                        if (rotor1_rotor1.ContainsKey(currentLetter))
+                        for (int i = 0; i < rotor_3.Count; i++)
                         {
-                            currentLetter = (char)rotor1_rotor1[currentLetter];
-                            break;
-                        }
-                        else
-                        {
-                            foreach (var key in rotor_1)
+                            if (rotor_3[i] == currentLetter)
                             {
-                                if (rotor1_rotor1[key] == currentLetter)
-                                {
-                                    currentLetter = key;
-                                    break;
-                                }
+                                currentLetter = (char)i;
+                                break;
                             }
                         }
 
-                        currentLetter = (char)rotor2_rotor1[currentLetter];
                         currentLetter = (char)rotor3_rotor2[currentLetter];
-                    }*/
-                }
 
+                        currentLetter = (char)rotor2_rotor1[currentLetter];
+
+
+                        if (Reflector.ContainsKey(currentLetter))
+                        {
+                            currentLetter = (char)Reflector[currentLetter];
+                        }
+                        else
+                        {
+                            currentLetter = (char)Reflector.FirstOrDefault(x => x.Value == currentLetter).Key;
+                        }
+
+                        currentLetter = (char)rotor2_rotor1[currentLetter];
+
+                        currentLetter = (char)rotor3_rotor2[currentLetter];
+
+                        if (Char.IsUpper(richTextBox1.Text[richTextBox1.Text.Length - 1]))
+                        {
+                            label5.Text += rotor_3[currentLetter];
+                        }
+                        else
+                            label5.Text += char.ToLower(rotor_3[currentLetter]);
+
+                    }
+                    #endregion
+                }
+                else if (radioButton2.Checked)
+                {
+                    #region Decryption
+                    //Rotors rotation
+                    if (int.Parse(comboBox1.Text) == 1)
+                    {
+                        comboBox1.Text = 27.ToString();
+                    }
+                    else if (int.Parse(comboBox2.Text) % 4 == 0 && int.Parse(comboBox3.Text) % 6 == 0)
+                    {
+                        comboBox1.Text = (int.Parse(comboBox1.Text) - 1).ToString();
+                    }
+
+                    if (int.Parse(comboBox2.Text) == 1)
+                    {
+                        comboBox2.Text = 26.ToString();
+                    }
+                    else if (int.Parse(comboBox3.Text) % 6 == 0)
+                    {
+                        comboBox2.Text = (int.Parse(comboBox2.Text) - 1).ToString();
+                    }
+
+                    if (int.Parse(comboBox3.Text) == 1)
+                    {
+                        comboBox3.Text = 26.ToString();
+                    }
+                    comboBox3.Text = (int.Parse(comboBox3.Text) - 1).ToString();
+
+                    //Decryption logic
+                    if (richTextBox1.Text != "")
+                    {
+
+                    }
+                    #endregion
+                }
             }
             else
             {
@@ -334,9 +335,9 @@ namespace _1st_try
             if (radioButton1.Checked)
             {
                 label5.Text = "";
-                foreach(var item in richTextBox1.Text.ToUpper())
+                foreach (var item in richTextBox1.Text.ToUpper())
                 {
-                    
+
                 }
             }
             else if (radioButton2.Checked)
