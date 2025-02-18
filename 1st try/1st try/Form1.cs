@@ -220,7 +220,7 @@ namespace _1st_try
                         }
                     }
 
-                    if (Reflector.ContainsKey(int.Parse(currentLetter.ToString())))
+                    if (char.IsDigit(currentLetter) && Reflector.ContainsKey(int.Parse(currentLetter.ToString())))
                     {
                         currentLetter = (char)Reflector[int.Parse(currentLetter.ToString())];
                     }
@@ -229,7 +229,9 @@ namespace _1st_try
                         currentLetter = (char)Reflector.FirstOrDefault(x => x.Value == currentLetter).Key;
                     }
 
-                   // currentLetter = rotor_1[int.Parse(rotor3_rotor2[currentLetter].ToString())];
+                    currentLetter = rotor_1[int.Parse(currentLetter.ToString())];
+
+
 
                     label5.Text += rotor_3[int.Parse(currentLetter.ToString())];
                 }
