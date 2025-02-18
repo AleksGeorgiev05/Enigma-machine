@@ -146,7 +146,7 @@ namespace _1st_try
             {
                 if (!flag_comboBox3)
                 {
-                    if (comboBox3.Text != "1")
+                    if (comboBox3.Text != "26")
                     {
                         RotateRotor(rotor_3, int.Parse(comboBox3.Text) - 1);
                     }
@@ -204,7 +204,7 @@ namespace _1st_try
                     {
                         comboBox3.Text = 1.ToString();
                     }
-                    else
+                    else 
                         comboBox3.Text = (int.Parse(comboBox3.Text) + 1).ToString();
 
                     //Ecnryption logic
@@ -255,7 +255,7 @@ namespace _1st_try
                     //Rotors rotation
                     if (int.Parse(comboBox1.Text) == 1)
                     {
-                        comboBox1.Text = 27.ToString();
+                        comboBox1.Text = 26.ToString();
                     }
                     else if (int.Parse(comboBox2.Text) % 4 == 0 && int.Parse(comboBox3.Text) % 6 == 0)
                     {
@@ -275,12 +275,13 @@ namespace _1st_try
                     {
                         comboBox3.Text = 26.ToString();
                     }
-                    comboBox3.Text = (int.Parse(comboBox3.Text) - 1).ToString();
+                    else
+                        comboBox3.Text = (int.Parse(comboBox3.Text) - 1).ToString();
 
                     //Decryption logic
                     if (richTextBox1.Text != "")
                     {
-
+                        char currentLetter = Char.ToUpper(richTextBox1.Text[richTextBox1.Text.Length - 1]);
                     }
                     #endregion
                 }
