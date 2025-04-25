@@ -2,6 +2,7 @@
 
 - "New message" button which clears label5 and richtextBox and enables radioButtons and comboBoxes 
 - Multiple language UI
+- Usupported symbol protection
 */
 using System.Collections;
 using System.Drawing.Design;
@@ -160,7 +161,17 @@ namespace _1st_try
         }
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
-            if (flag_comboBox1 && flag_comboBox2 && flag_comboBox3 && (radioButton1.Checked || radioButton2.Checked))
+            bool isLetter = true;
+            if (richTextBox1.Text[richTextBox1.Text.Length - 1] == '.' || 
+                richTextBox1.Text[richTextBox1.Text.Length - 1] == ',' ||
+                richTextBox1.Text[richTextBox1.Text.Length - 1] == '!' ||
+                richTextBox1.Text[richTextBox1.Text.Length - 1] == '?')
+            {
+                isLetter = false;
+                label5.Text += richTextBox1.Text[richTextBox1.Text.Length - 1];
+            }
+
+            if (flag_comboBox1 && flag_comboBox2 && flag_comboBox3 && (radioButton1.Checked || radioButton2.Checked) && isLetter)
             {
                 comboBox1.Enabled = false;
                 comboBox2.Enabled = false;
@@ -286,7 +297,7 @@ namespace _1st_try
                     #endregion
                 }
             }
-            else
+            else if(isLetter)
             {
                 label5.Text = "Make sure that the you have checked encryption or decryption\nand rotors are set to the right setting.";
             }
