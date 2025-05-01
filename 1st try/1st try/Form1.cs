@@ -292,7 +292,8 @@ namespace _1st_try
                     //Decryption logic
                     if (richTextBox1.Text != "")
                     {
-                        char currentLetter = Char.ToUpper(richTextBox1.Text[richTextBox1.Text.Length - 1]);
+                        int p = 0; //position in the richTextBox1
+                        char currentLetter = Char.ToUpper(richTextBox1.Text[p]);
                     }
                     #endregion
                 }
