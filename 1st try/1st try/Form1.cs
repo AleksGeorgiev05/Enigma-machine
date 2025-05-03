@@ -3,9 +3,11 @@
 - "New message" button which clears label5 and richtextBox and enables radioButtons and comboBoxes 
 - Multiple language UI
 - Usupported symbol protection
+- Numbers encryption
 */
 using System.Collections;
 using System.Drawing.Design;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Windows.Forms;
 namespace _1st_try
@@ -34,7 +36,7 @@ namespace _1st_try
         private bool flag_comboBox1 = false;
         private bool flag_comboBox2 = false;
         private bool flag_comboBox3 = false;
-
+        private bool clear = false;
         #region Methods
         private void InitialiseAlphabet()
         {
@@ -165,7 +167,8 @@ namespace _1st_try
             if (richTextBox1.Text[richTextBox1.Text.Length - 1] == '.' || 
                 richTextBox1.Text[richTextBox1.Text.Length - 1] == ',' ||
                 richTextBox1.Text[richTextBox1.Text.Length - 1] == '!' ||
-                richTextBox1.Text[richTextBox1.Text.Length - 1] == '?')
+                richTextBox1.Text[richTextBox1.Text.Length - 1] == '?' ||
+                richTextBox1.Text[richTextBox1.Text.Length - 1] == ' ')
             {
                 isLetter = false;
                 label5.Text += richTextBox1.Text[richTextBox1.Text.Length - 1];
@@ -257,14 +260,20 @@ namespace _1st_try
                         else
                             label5.Text += char.ToLower(rotor_3[currentLetter]);
 
+                        if (clear)
+                        {
+                            label5.Text = string.Empty;
+                            clear = false;
+                        }
+
                     }
                     #endregion
                 }
                 else if (radioButton2.Checked)
                 {
                     #region Decryption
-                    //Rotors rotation
-                    if (int.Parse(comboBox1.Text) == 1)
+                    //Rotors rotation not needed
+                    /*if (int.Parse(comboBox1.Text) == 26 && int.Parse(comboBox2.Text) % 4 == 0 && int.Parse(comboBox3.Text) % 6 == 0)
                     {
                         comboBox1.Text = 26.ToString();
                     }
@@ -273,7 +282,7 @@ namespace _1st_try
                         comboBox1.Text = (int.Parse(comboBox1.Text) - 1).ToString();
                     }
 
-                    if (int.Parse(comboBox2.Text) == 1)
+                    if (int.Parse(comboBox2.Text) == 1 && int.Parse(comboBox3.Text) % 6 == 0)
                     {
                         comboBox2.Text = 26.ToString();
                     }
@@ -287,14 +296,9 @@ namespace _1st_try
                         comboBox3.Text = 26.ToString();
                     }
                     else
-                        comboBox3.Text = (int.Parse(comboBox3.Text) - 1).ToString();
+                        comboBox3.Text = (int.Parse(comboBox3.Text) - 1).ToString();*/
 
-                    //Decryption logic
-                    if (richTextBox1.Text != "")
-                    {
-                        int p = 0; //position in the richTextBox1
-                        char currentLetter = Char.ToUpper(richTextBox1.Text[p]);
-                    }
+                    
                     #endregion
                 }
             }
@@ -327,7 +331,7 @@ namespace _1st_try
 
         private void button1_Click(object sender, EventArgs e)
         {
-            richTextBox1.Text = string.Empty;
+            clear = true;
             label5.Text = "Your message will show here!";
 
             comboBox1.Enabled = true;
@@ -361,6 +365,7 @@ namespace _1st_try
             {
                 label5.Text = "Make sure that the you have checked encryption or decryption\nand rotors are set to the right setting.";
             }
+            
         }
     }
 }
