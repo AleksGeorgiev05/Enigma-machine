@@ -4,6 +4,8 @@
 - Multiple language UI
 - Usupported symbol protection
 - Numbers encryption
+- Decryption
+- Methods
 */
 using System.Collections;
 using System.Drawing.Design;
@@ -36,7 +38,7 @@ namespace _1st_try
         private bool flag_comboBox1 = false;
         private bool flag_comboBox2 = false;
         private bool flag_comboBox3 = false;
-        private bool clear = false;
+
         #region Methods
         private void InitialiseAlphabet()
         {
@@ -163,67 +165,67 @@ namespace _1st_try
         }
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
-            bool isLetter = true;
-            if (richTextBox1.Text[richTextBox1.Text.Length - 1] == '.' || 
-                richTextBox1.Text[richTextBox1.Text.Length - 1] == ',' ||
-                richTextBox1.Text[richTextBox1.Text.Length - 1] == '!' ||
-                richTextBox1.Text[richTextBox1.Text.Length - 1] == '?' ||
-                richTextBox1.Text[richTextBox1.Text.Length - 1] == ' ')
+            try
             {
-                isLetter = false;
-                label5.Text += richTextBox1.Text[richTextBox1.Text.Length - 1];
-            }
-
-            if (flag_comboBox1 && flag_comboBox2 && flag_comboBox3 && (radioButton1.Checked || radioButton2.Checked) && isLetter)
-            {
-                comboBox1.Enabled = false;
-                comboBox2.Enabled = false;
-                comboBox3.Enabled = false;
-                radioButton1.Enabled = false;
-                radioButton2.Enabled = false;
-
-                if (label5.Text == "Make sure that the you have checked encryption or decryption\nand rotors are set to the right setting."
-                    || label5.Text == "Your message will show here!")
+                if (richTextBox1.Text != "")
                 {
-                    if (label5.Text == "Make sure that the you have checked encryption or decryption\nand rotors are set to the right setting.")
+                    bool isLetter = true;
+                    if (richTextBox1.Text[richTextBox1.Text.Length - 1] == '.' ||
+                        richTextBox1.Text[richTextBox1.Text.Length - 1] == ',' ||
+                        richTextBox1.Text[richTextBox1.Text.Length - 1] == '!' ||
+                        richTextBox1.Text[richTextBox1.Text.Length - 1] == '?' ||
+                        richTextBox1.Text[richTextBox1.Text.Length - 1] == ' ')
                     {
-                        richTextBox1.Text = "";
-                    }
-                    label5.Text = "";
-                }
-
-                if (radioButton1.Checked)
-                {
-                    #region Encryption
-                    //Rotors rotation
-                    if (int.Parse(comboBox1.Text) == 26 && int.Parse(comboBox2.Text) % 4 == 0 && int.Parse(comboBox3.Text) % 6 == 0)
-                    {
-                        comboBox1.Text = 1.ToString();
-                    }
-                    else if (int.Parse(comboBox2.Text) % 4 == 0 && int.Parse(comboBox3.Text) % 6 == 0)
-                    {
-                        comboBox1.Text = (int.Parse(comboBox1.Text) + 1).ToString();
+                        isLetter = false;
+                        label5.Text += richTextBox1.Text[richTextBox1.Text.Length - 1];
                     }
 
-                    if (int.Parse(comboBox2.Text) == 26 && int.Parse(comboBox3.Text) % 6 == 0)
+                    if (flag_comboBox1 && flag_comboBox2 && flag_comboBox3 && radioButton1.Checked && isLetter)
                     {
-                        comboBox2.Text = 1.ToString();
-                    }
-                    else if (int.Parse(comboBox3.Text) % 6 == 0)
-                    {
-                        comboBox2.Text = (int.Parse(comboBox2.Text) + 1).ToString();
-                    }
+                        comboBox1.Enabled = false;
+                        comboBox2.Enabled = false;
+                        comboBox3.Enabled = false;
+                        radioButton1.Enabled = false;
+                        radioButton2.Enabled = false;
 
-                    if (int.Parse(comboBox3.Text) == 26)
-                    {
-                        comboBox3.Text = 1.ToString();
-                    }
-                    else 
-                        comboBox3.Text = (int.Parse(comboBox3.Text) + 1).ToString();
+                        if (label5.Text == "Make sure that the you have checked encryption or decryption\nand rotors are set to the right setting."
+                            || label5.Text == "Your message will show here!")
+                        {
+                            if (label5.Text == "Make sure that the you have checked encryption or decryption\nand rotors are set to the right setting.")
+                            {
+                                richTextBox1.Text = "";
+                            }
+                            label5.Text = "";
+                        }
 
-                    //Ecnryption logic
-                    if (richTextBox1.Text != "")
-                    {
+                        #region Encryption
+                        //Rotors rotation
+                        if (int.Parse(comboBox1.Text) == 26 && int.Parse(comboBox2.Text) % 4 == 0 && int.Parse(comboBox3.Text) % 6 == 0)
+                        {
+                            comboBox1.Text = 1.ToString();
+                        }
+                        else if (int.Parse(comboBox2.Text) % 4 == 0 && int.Parse(comboBox3.Text) % 6 == 0)
+                        {
+                            comboBox1.Text = (int.Parse(comboBox1.Text) + 1).ToString();
+                        }
+
+                        if (int.Parse(comboBox2.Text) == 26 && int.Parse(comboBox3.Text) % 6 == 0)
+                        {
+                            comboBox2.Text = 1.ToString();
+                        }
+                        else if (int.Parse(comboBox3.Text) % 6 == 0)
+                        {
+                            comboBox2.Text = (int.Parse(comboBox2.Text) + 1).ToString();
+                        }
+
+                        if (int.Parse(comboBox3.Text) == 26)
+                        {
+                            comboBox3.Text = 1.ToString();
+                        }
+                        else
+                            comboBox3.Text = (int.Parse(comboBox3.Text) + 1).ToString();
+
+                        //Ecnryption logic
                         char currentLetter = Char.ToUpper(richTextBox1.Text[richTextBox1.Text.Length - 1]);
 
                         for (int i = 0; i < rotor_3.Count; i++)
@@ -259,53 +261,19 @@ namespace _1st_try
                         }
                         else
                             label5.Text += char.ToLower(rotor_3[currentLetter]);
-
-                        if (clear)
-                        {
-                            label5.Text = string.Empty;
-                            clear = false;
-                        }
-
+                        #endregion
                     }
-                    #endregion
-                }
-                else if (radioButton2.Checked)
-                {
-                    #region Decryption
-                    //Rotors rotation not needed
-                    /*if (int.Parse(comboBox1.Text) == 26 && int.Parse(comboBox2.Text) % 4 == 0 && int.Parse(comboBox3.Text) % 6 == 0)
+                    else if (isLetter && !radioButton2.Checked)
                     {
-                        comboBox1.Text = 26.ToString();
+                        label5.Text = "Make sure that the you have checked encryption or decryption\nand rotors are set to the right setting.";
                     }
-                    else if (int.Parse(comboBox2.Text) % 4 == 0 && int.Parse(comboBox3.Text) % 6 == 0)
-                    {
-                        comboBox1.Text = (int.Parse(comboBox1.Text) - 1).ToString();
-                    }
-
-                    if (int.Parse(comboBox2.Text) == 1 && int.Parse(comboBox3.Text) % 6 == 0)
-                    {
-                        comboBox2.Text = 26.ToString();
-                    }
-                    else if (int.Parse(comboBox3.Text) % 6 == 0)
-                    {
-                        comboBox2.Text = (int.Parse(comboBox2.Text) - 1).ToString();
-                    }
-
-                    if (int.Parse(comboBox3.Text) == 1)
-                    {
-                        comboBox3.Text = 26.ToString();
-                    }
-                    else
-                        comboBox3.Text = (int.Parse(comboBox3.Text) - 1).ToString();*/
-
-                    
-                    #endregion
                 }
             }
-            else if(isLetter)
+            catch (Exception ex)
             {
-                label5.Text = "Make sure that the you have checked encryption or decryption\nand rotors are set to the right setting.";
+                label5.Text = ex.Message;
             }
+
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
@@ -331,7 +299,7 @@ namespace _1st_try
 
         private void button1_Click(object sender, EventArgs e)
         {
-            clear = true;
+            richTextBox1.Text = string.Empty;
             label5.Text = "Your message will show here!";
 
             comboBox1.Enabled = true;
@@ -339,6 +307,10 @@ namespace _1st_try
             comboBox3.Enabled = true;
             radioButton1.Enabled = true;
             radioButton2.Enabled = true;
+
+            ResetRotor(rotor_1);
+            ResetRotor(rotor_2);
+            ResetRotor(rotor_3);
 
             comboBox1.SelectedIndex = -1;
             comboBox2.SelectedIndex = -1;
@@ -349,23 +321,66 @@ namespace _1st_try
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (radioButton1.Checked)
+            try
             {
-                label5.Text = "";
-                foreach (var item in richTextBox1.Text.ToUpper())
+                bool isLetter = true;
+                if (richTextBox1.Text[richTextBox1.Text.Length - 1] == '.' ||
+                    richTextBox1.Text[richTextBox1.Text.Length - 1] == ',' ||
+                    richTextBox1.Text[richTextBox1.Text.Length - 1] == '!' ||
+                    richTextBox1.Text[richTextBox1.Text.Length - 1] == '?' ||
+                    richTextBox1.Text[richTextBox1.Text.Length - 1] == ' ')
                 {
+                    isLetter = false;
+                    label5.Text += richTextBox1.Text[richTextBox1.Text.Length - 1];
+                }
 
+                if (flag_comboBox1 && flag_comboBox2 && flag_comboBox3 && radioButton2.Checked && richTextBox1.Text != "" && isLetter)
+                {
+                    comboBox1.Enabled = false;
+                    comboBox2.Enabled = false;
+                    comboBox3.Enabled = false;
+                    radioButton1.Enabled = false;
+                    radioButton2.Enabled = false;
+
+                    if (label5.Text == "Make sure that the you have checked encryption or decryption\nand rotors are set to the right setting."
+                        || label5.Text == "Your message will show here!")
+                    {
+                        if (label5.Text == "Make sure that the you have checked encryption or decryption\nand rotors are set to the right setting.")
+                        {
+                            richTextBox1.Text = "";
+                        }
+                        label5.Text = "";
+                    }
+
+                    foreach (var item in richTextBox1.Text)
+                    {
+                        bool isUpper = false;
+                        char currentLetter = Char.ToUpper(richTextBox1.Text[item]);
+                        currentLetter = rotor_3[currentLetter];
+
+                        currentLetter = (char)rotor3_rotor2.FirstOrDefault(x => x.Value == currentLetter).Key;
+                        currentLetter = (char)rotor2_rotor1.FirstOrDefault(x => x.Value == currentLetter).Key;
+                        currentLetter = (char)Reflector.FirstOrDefault(x => x.Value == currentLetter).Key;
+                        currentLetter = (char)rotor2_rotor1.FirstOrDefault(x => x.Value == currentLetter).Key;
+                        currentLetter = (char)rotor3_rotor2.FirstOrDefault(x => x.Value == currentLetter).Key;
+
+                        if (isUpper)
+                        {
+                            label5.Text += rotor_3[currentLetter];
+                        }
+                        else
+                            label5.Text += (char)((int)rotor_3[currentLetter] + 32);
+                    }
+                }
+                else if (isLetter)
+                {
+                    label5.Text = "Make sure that the you have checked encryption or decryption\nand rotors are set to the right setting.";
                 }
             }
-            else if (radioButton2.Checked)
+            catch (Exception ex)
             {
-                label5.Text = "";
+                label5.Text = ex.Message;
             }
-            else
-            {
-                label5.Text = "Make sure that the you have checked encryption or decryption\nand rotors are set to the right setting.";
-            }
-            
         }
     }
 }
