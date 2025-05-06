@@ -6,6 +6,7 @@
 - Numbers encryption
 - Decryption
 - Methods
+- Error label
 */
 using System.Collections;
 using System.Drawing.Design;
@@ -321,6 +322,7 @@ namespace _1st_try
 
         private void button2_Click(object sender, EventArgs e)
         {
+            #region Decryption
             try
             {
                 bool isLetter = true;
@@ -352,13 +354,21 @@ namespace _1st_try
                         label5.Text = "";
                     }
 
-                    foreach (var item in richTextBox1.Text)
+                    for (int i = 0; i < richTextBox1.Text.Length; i++)
                     {
                         bool isUpper = false;
-                        char currentLetter = Char.ToUpper(richTextBox1.Text[item]);
+                        char currentLetter = Char.ToUpper(richTextBox1.Text[i]);
+                        for (int j = 0; j < rotor_3.Count; j++)
+                        {
+                            if (currentLetter == rotor_3[j])
+                            {
+                                currentLetter = (char)j;
+                                break;
+                            }
+                        }
                         currentLetter = rotor_3[currentLetter];
 
-                        currentLetter = (char)rotor3_rotor2.FirstOrDefault(x => x.Value == currentLetter).Key;
+                        currentLetter = (char)rotor3_rotor2.FirstOrDefault(x => x.Value == currentLetter).Key; //currentLetter pak stava 'V' vmesto 19
                         currentLetter = (char)rotor2_rotor1.FirstOrDefault(x => x.Value == currentLetter).Key;
                         currentLetter = (char)Reflector.FirstOrDefault(x => x.Value == currentLetter).Key;
                         currentLetter = (char)rotor2_rotor1.FirstOrDefault(x => x.Value == currentLetter).Key;
@@ -376,11 +386,13 @@ namespace _1st_try
                 {
                     label5.Text = "Make sure that the you have checked encryption or decryption\nand rotors are set to the right setting.";
                 }
+                
             }
             catch (Exception ex)
             {
                 label5.Text = ex.Message;
             }
+            #endregion
         }
     }
 }
