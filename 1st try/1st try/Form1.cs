@@ -366,13 +366,20 @@ namespace _1st_try
                                 break;
                             }
                         }
-                        currentLetter = rotor_3[currentLetter];
+                        //currentLetter = rotor_3[currentLetter];
 
-                        currentLetter = (char)rotor3_rotor2.FirstOrDefault(x => x.Value == currentLetter).Key; //currentLetter pak stava 'V' vmesto 19
-                        currentLetter = (char)rotor2_rotor1.FirstOrDefault(x => x.Value == currentLetter).Key;
-                        currentLetter = (char)Reflector.FirstOrDefault(x => x.Value == currentLetter).Key;
-                        currentLetter = (char)rotor2_rotor1.FirstOrDefault(x => x.Value == currentLetter).Key;
-                        currentLetter = (char)rotor3_rotor2.FirstOrDefault(x => x.Value == currentLetter).Key;
+                        currentLetter = (char)rotor3_rotor2.First(x => x.Value == currentLetter).Key; //currentLetter pak stava 'V' vmesto 19
+                        currentLetter = (char)rotor2_rotor1.First(x => x.Value == currentLetter).Key;
+
+                        if (Reflector.ContainsKey(currentLetter))
+                        {
+                            currentLetter = (char)Reflector[currentLetter];
+                        }
+                        else
+                            currentLetter = (char)Reflector.FirstOrDefault(x => x.Value == currentLetter).Key;
+
+                        currentLetter = (char)rotor2_rotor1.First(x => x.Value == currentLetter).Key;
+                        currentLetter = (char)rotor3_rotor2.First(x => x.Value == currentLetter).Key;
 
                         if (isUpper)
                         {
