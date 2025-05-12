@@ -240,8 +240,25 @@ namespace _1st_try
 
                         currentLetter = (char)rotor3_rotor2[currentLetter];
 
+                        for (int i = 0; i < rotor_2.Count; i++)
+                        {
+                            if (rotor_2[i] == currentLetter)
+                            {
+                                currentLetter = (char)i;
+                                break;
+                            }
+                        }
+
                         currentLetter = (char)rotor2_rotor1[currentLetter];
 
+                        for (int i = 0; i < rotor_1.Count; i++)
+                        {
+                            if (rotor_1[i] == currentLetter)
+                            {
+                                currentLetter = (char)i;
+                                break;
+                            }
+                        }//done 
 
                         if (Reflector.ContainsKey(currentLetter))
                         {
