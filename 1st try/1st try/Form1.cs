@@ -22,12 +22,17 @@ namespace _1st_try
             InitializeComponent();
             InitialiseAlphabet();
             InitialiseRotors();
+            InitialiseTestRotors();
         }
 
         private List<char> alphabet = new List<char>();
         private List<char> rotor_1 = new List<char>(); //{ 'N', 'O', 'C', 'W', 'L', 'H', 'P', 'R', 'K', 'Y', 'U', 'Q', 'V', 'I', 'J', 'D', 'E', 'M', 'G', 'F', 'T', 'A', 'B', 'S', 'Z', 'X' };
         private List<char> rotor_2 = new List<char>(); //{ 'C', 'E', 'J', 'A', 'Q', 'V', 'D', 'G', 'U', 'B', 'O', 'T', 'X', 'P', 'S', 'I', 'Y', 'F', 'N', 'M', 'W', 'Z', 'R', 'H', 'K', 'L' };
         private List<char> rotor_3 = new List<char>(); //{ 'S', 'V', 'E', 'Z', 'G', 'Y', 'I', 'K', 'J', 'N', 'W', 'T', 'B', 'O', 'M', 'Q', 'P', 'H', 'A', 'U', 'C', 'X', 'D', 'L', 'F', 'R' };
+
+        private List<int> rotor_1_test = new List<int>();
+        private List<int> rotor_2_test = new List<int>();
+        private List<int> rotor_3_test = new List<int>();
 
         private Dictionary<int, int> rotor3_rotor2 = new Dictionary<int, int> {{10, 12}, {2, 22}, {18, 9}, {23, 21}, {21, 11}, {22, 19}, {5, 18}, {13, 23}, {16, 1}, {1, 13},
         {17, 5}, {3, 6}, {9, 2}, {8, 8}, {15, 14}, {12, 15}, {20, 10}, {14, 17}, {4, 16}, {7, 25}, {19, 24}, {11, 20}, {24, 4}, {6, 3}, {25, 7}, {0, 0}};
@@ -41,6 +46,15 @@ namespace _1st_try
         private bool flag_comboBox3 = false;
 
         #region Methods
+        private void InitialiseTestRotors()
+        {
+            for (int i = 1; i <= 26; i++)
+            {
+                rotor_1_test.Add(i);
+                rotor_2_test.Add(i);
+                rotor_3_test.Add(i);
+            }
+        }
         private void InitialiseAlphabet()
         {
             for (int i = 0; i < 26; i++)
@@ -57,11 +71,11 @@ namespace _1st_try
                 rotor_3.Add(alphabet[i]);
             }
         }
-        private List<char> RotateRotor(List<char> rotor, int rotations)
+        private List<int> RotateRotor(List<int> rotor, int rotations)//List<char>
         {
             for (int i = 0; i < rotations; i++)
             {
-                char temp = rotor[0];
+                int temp = rotor[0];//char
                 for (int j = 0; j < rotor.Count - 1; j++)
                 {
                     rotor[j] = rotor[j + 1];
@@ -104,13 +118,14 @@ namespace _1st_try
             {
                 if (comboBox1.Text != "1")
                 {
-                    RotateRotor(rotor_1, int.Parse(comboBox1.Text) - 1);
+                    //RotateRotor(rotor_1, int.Parse(comboBox1.Text) - 1);
+                    RotateRotor(rotor_1_test, int.Parse(comboBox1.Text) - 1);
                 }
                 flag_comboBox1 = true;
             }
             else
             {
-                RotateRotor(rotor_1, 1);
+                RotateRotor(rotor_1_test, 1);
             }
 
 
@@ -122,13 +137,13 @@ namespace _1st_try
             {
                 if (comboBox2.Text != "1")
                 {
-                    RotateRotor(rotor_2, int.Parse(comboBox2.Text) - 1);
+                    RotateRotor(rotor_2_test, int.Parse(comboBox2.Text) - 1);
                 }
                 flag_comboBox2 = true;
             }
             else
             {
-                RotateRotor(rotor_2, 1);
+                RotateRotor(rotor_2_test, 1);
             }
         }
         private void comboBox3_SelectedIndexChanged_2(object sender, EventArgs e)
@@ -139,13 +154,13 @@ namespace _1st_try
                 {
                     if (comboBox3.Text != "1")
                     {
-                        RotateRotor(rotor_3, int.Parse(comboBox3.Text) - 1);
+                        RotateRotor(rotor_3_test, int.Parse(comboBox3.Text) - 1);
                     }
                     flag_comboBox3 = true;
                 }
                 else
                 {
-                    RotateRotor(rotor_3, 1);
+                    RotateRotor(rotor_3_test, 1);
                 }
             }
             else if (radioButton2.Checked)
@@ -154,13 +169,13 @@ namespace _1st_try
                 {
                     if (comboBox3.Text != "26")
                     {
-                        RotateRotor(rotor_3, int.Parse(comboBox3.Text) - 1);
+                        RotateRotor(rotor_3_test, int.Parse(comboBox3.Text) - 1);
                     }
                     flag_comboBox3 = true;
                 }
                 else
                 {
-                    RotateRotor(rotor_3, 1);
+                    RotateRotor(rotor_3_test, 1);
                 }
             }
         }
@@ -229,9 +244,9 @@ namespace _1st_try
                         //Ecnryption logic
                         char currentLetter = Char.ToUpper(richTextBox1.Text[richTextBox1.Text.Length - 1]);
 
-                        for (int i = 0; i < rotor_3.Count; i++)
+                        for (int i = 0; i < rotor_3_test.Count; i++)
                         {
-                            if (rotor_3[i] == currentLetter)
+                            if (rotor_3_test[i] == currentLetter)
                             {
                                 currentLetter = (char)i;
                                 break;
@@ -240,25 +255,11 @@ namespace _1st_try
 
                         currentLetter = (char)rotor3_rotor2[currentLetter];
 
-                        for (int i = 0; i < rotor_2.Count; i++)
-                        {
-                            if (rotor_2[i] == currentLetter)
-                            {
-                                currentLetter = (char)i;
-                                break;
-                            }
-                        }
+                        currentLetter = (char)rotor_2_test[currentLetter];
 
                         currentLetter = (char)rotor2_rotor1[currentLetter];
 
-                        for (int i = 0; i < rotor_1.Count; i++)
-                        {
-                            if (rotor_1[i] == currentLetter)
-                            {
-                                currentLetter = (char)i;
-                                break;
-                            }
-                        }//done 
+                        currentLetter = (char)rotor_1_test[currentLetter];
 
                         if (Reflector.ContainsKey(currentLetter))
                         {
@@ -266,19 +267,34 @@ namespace _1st_try
                         }
                         else
                         {
-                            currentLetter = (char)Reflector.FirstOrDefault(x => x.Value == currentLetter).Key;
+                            currentLetter = (char)Reflector.First(x => x.Value == currentLetter).Key;
                         }
+
+                        currentLetter = (char)rotor_1_test[currentLetter];
 
                         currentLetter = (char)rotor2_rotor1[currentLetter];
 
+                        currentLetter = (char)rotor_2_test[currentLetter];
+
                         currentLetter = (char)rotor3_rotor2[currentLetter];
+
+                        currentLetter = (char)rotor_3_test[currentLetter];
+
+                        for (int i = 0; i < rotor_3_test.Count; i++)
+                        {
+                            if (rotor_3_test[i] == currentLetter)
+                            {
+                                currentLetter = (char)i;
+                                break;
+                            }
+                        }
 
                         if (Char.IsUpper(richTextBox1.Text[richTextBox1.Text.Length - 1]))
                         {
-                            label5.Text += rotor_3[currentLetter];
+                            label5.Text += (char)rotor_3_test[currentLetter];
                         }
                         else
-                            label5.Text += char.ToLower(rotor_3[currentLetter]);
+                            label5.Text += char.ToLower((char)rotor_3_test[currentLetter]);
                         #endregion
                     }
                     else if (isLetter && !radioButton2.Checked)
