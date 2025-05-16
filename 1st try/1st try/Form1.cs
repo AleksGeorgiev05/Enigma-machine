@@ -12,6 +12,7 @@ using System.Collections;
 using System.Drawing.Design;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
+using System.Text;
 using System.Windows.Forms;
 namespace _1st_try
 {
@@ -48,7 +49,7 @@ namespace _1st_try
         #region Methods
         private void InitialiseTestRotors()
         {
-            for (int i = 1; i <= 26; i++)
+            for (int i = 0; i < 26; i++)
             {
                 rotor_1_test.Add(i);
                 rotor_2_test.Add(i);
@@ -215,38 +216,12 @@ namespace _1st_try
                         }
 
                         #region Encryption
-                        //Rotors rotation
-                        if (int.Parse(comboBox1.Text) == 26 && int.Parse(comboBox2.Text) % 4 == 0 && int.Parse(comboBox3.Text) % 6 == 0)
-                        {
-                            comboBox1.Text = 1.ToString();
-                        }
-                        else if (int.Parse(comboBox2.Text) % 4 == 0 && int.Parse(comboBox3.Text) % 6 == 0)
-                        {
-                            comboBox1.Text = (int.Parse(comboBox1.Text) + 1).ToString();
-                        }
-
-                        if (int.Parse(comboBox2.Text) == 26 && int.Parse(comboBox3.Text) % 6 == 0)
-                        {
-                            comboBox2.Text = 1.ToString();
-                        }
-                        else if (int.Parse(comboBox3.Text) % 6 == 0)
-                        {
-                            comboBox2.Text = (int.Parse(comboBox2.Text) + 1).ToString();
-                        }
-
-                        if (int.Parse(comboBox3.Text) == 26)
-                        {
-                            comboBox3.Text = 1.ToString();
-                        }
-                        else
-                            comboBox3.Text = (int.Parse(comboBox3.Text) + 1).ToString();
-
-                        //Ecnryption logic
+                        //Ecnryption logic: swap with rotors rotation
                         char currentLetter = Char.ToUpper(richTextBox1.Text[richTextBox1.Text.Length - 1]);
 
                         for (int i = 0; i < rotor_3_test.Count; i++)
                         {
-                            if (rotor_3_test[i] == currentLetter)
+                            if (rotor_3_test[i] == currentLetter - 65)
                             {
                                 currentLetter = (char)i;
                                 break;
@@ -291,10 +266,37 @@ namespace _1st_try
 
                         if (Char.IsUpper(richTextBox1.Text[richTextBox1.Text.Length - 1]))
                         {
-                            label5.Text += (char)rotor_3_test[currentLetter];
+                            label5.Text += (char)(rotor_3_test[currentLetter] + 65);
                         }
                         else
-                            label5.Text += char.ToLower((char)rotor_3_test[currentLetter]);
+                            label5.Text += char.ToLower((char)(rotor_3_test[currentLetter] + 65));
+
+                        //Rotors rotation
+                        if (int.Parse(comboBox1.Text) == 26 && int.Parse(comboBox2.Text) % 4 == 0 && int.Parse(comboBox3.Text) % 6 == 0)
+                        {
+                            comboBox1.Text = 1.ToString();
+                        }
+                        else if (int.Parse(comboBox2.Text) % 4 == 0 && int.Parse(comboBox3.Text) % 6 == 0)
+                        {
+                            comboBox1.Text = (int.Parse(comboBox1.Text) + 1).ToString();
+                        }
+
+                        if (int.Parse(comboBox2.Text) == 26 && int.Parse(comboBox3.Text) % 6 == 0)
+                        {
+                            comboBox2.Text = 1.ToString();
+                        }
+                        else if (int.Parse(comboBox3.Text) % 6 == 0)
+                        {
+                            comboBox2.Text = (int.Parse(comboBox2.Text) + 1).ToString();
+                        }
+
+                        if (int.Parse(comboBox3.Text) == 26)
+                        {
+                            comboBox3.Text = 1.ToString();
+                        }
+                        else
+                            comboBox3.Text = (int.Parse(comboBox3.Text) + 1).ToString();
+
                         #endregion
                     }
                     else if (isLetter && !radioButton2.Checked)
