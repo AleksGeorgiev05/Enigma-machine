@@ -1,12 +1,13 @@
 /*TO DO
 
-- "New message" button which clears label5 and richtextBox and enables radioButtons and comboBoxes 
+done - "New message" button which clears label5 and richtextBox and enables radioButtons and comboBoxes 
 - Multiple language UI
 - Usupported symbol protection
 - Numbers encryption
 - Decryption
 - Methods
 - Error label
+- Enable to erase
 */
 using System.Collections;
 using System.Drawing.Design;
@@ -27,6 +28,7 @@ namespace _1st_try
         }
 
         private List<char> alphabet = new List<char>();
+
         private List<char> rotor_1 = new List<char>(); //{ 'N', 'O', 'C', 'W', 'L', 'H', 'P', 'R', 'K', 'Y', 'U', 'Q', 'V', 'I', 'J', 'D', 'E', 'M', 'G', 'F', 'T', 'A', 'B', 'S', 'Z', 'X' };
         private List<char> rotor_2 = new List<char>(); //{ 'C', 'E', 'J', 'A', 'Q', 'V', 'D', 'G', 'U', 'B', 'O', 'T', 'X', 'P', 'S', 'I', 'Y', 'F', 'N', 'M', 'W', 'Z', 'R', 'H', 'K', 'L' };
         private List<char> rotor_3 = new List<char>(); //{ 'S', 'V', 'E', 'Z', 'G', 'Y', 'I', 'K', 'J', 'N', 'W', 'T', 'B', 'O', 'M', 'Q', 'P', 'H', 'A', 'U', 'C', 'X', 'D', 'L', 'F', 'R' };
@@ -114,7 +116,6 @@ namespace _1st_try
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             if (!flag_comboBox1)
             {
                 if (comboBox1.Text != "1")
@@ -128,12 +129,9 @@ namespace _1st_try
             {
                 RotateRotor(rotor_1_test, 1);
             }
-
-
         }
         private void comboBox2_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-
             if (!flag_comboBox2)
             {
                 if (comboBox2.Text != "1")
@@ -216,7 +214,7 @@ namespace _1st_try
                         }
 
                         #region Encryption
-                        //Ecnryption logic: swap with rotors rotation
+                        //Ecnryption logic
                         char currentLetter = Char.ToUpper(richTextBox1.Text[richTextBox1.Text.Length - 1]);
 
                         for (int i = 0; i < rotor_3_test.Count; i++)
@@ -309,7 +307,6 @@ namespace _1st_try
             {
                 label5.Text = ex.Message;
             }
-
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
