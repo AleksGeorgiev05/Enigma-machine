@@ -42,8 +42,8 @@
               "Title": "Form1.cs [Design]",
               "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Enigma-machine\\1st try\\1st try\\Form1.cs",
               "RelativeDocumentMoniker": "1st try\\Form1.cs",
-              "ToolTip": "C:\\Users\\PC\\Desktop\\Enigma-machine\\1st try\\1st try\\Form1.cs [Design]*",
-              "RelativeToolTip": "1st try\\Form1.cs [Design]*",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\Enigma-machine\\1st try\\1st try\\Form1.cs [Design]",
+              "RelativeToolTip": "1st try\\Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-23T19:33:32.32Z",
               "EditorCaption": " [Design]"
@@ -54,14 +54,16 @@
               "Title": "Form1.cs",
               "DocumentMoniker": "C:\\Users\\PC\\Desktop\\Enigma-machine\\1st try\\1st try\\Form1.cs",
               "RelativeDocumentMoniker": "1st try\\Form1.cs",
-<<<<<<< Updated upstream
-              "ToolTip": "C:\\Users\\PC\\Desktop\\Enigma-machine\\1st try\\1st try\\Form1.cs*",
-              "RelativeToolTip": "1st try\\Form1.cs*",
-              "ViewState": "AgIAAKoAAAAAAAAAAAAkwIQAAAAJAAAAAAAAAA==",
-=======
-              "ToolTip": "C:\\Users\\kyord\\Desktop\\Enigma-machine\\1st try\\1st try\\Form1.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\Enigma-machine\\1st try\\1st try\\Form1.cs",
               "RelativeToolTip": "1st try\\Form1.cs",
-              "ViewState": "AgIAANAAAAAAAAAAAAASwOoAAAAUAAAAAAAAAA==",
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+              "ViewState": "AgIAAEcBAAAAMzMzMzM+wFcBAAAgAAAAAAAAAA==",
+=======
+              "ViewState": "AgIAAKoAAAAAAAAAAADgv7cAAAAIAAAAAAAAAA==",
+>>>>>>> Stashed changes
+=======
+              "ViewState": "AgIAAKoAAAAAAAAAAADgv7cAAAAIAAAAAAAAAA==",
 >>>>>>> Stashed changes
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-23T19:39:43.161Z",

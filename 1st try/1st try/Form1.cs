@@ -224,93 +224,6 @@ namespace _1st_try
                             currentLetter = (char)i;
                             break;
                         }
-<<<<<<< Updated upstream
-
-                        #region Encryption
-                        //Ecnryption logic
-                        char currentLetter = Char.ToUpper(richTextBox1.Text[richTextBox1.Text.Length - 1]);
-
-                        for (int i = 0; i < rotor_3_test.Count; i++)
-                        {
-                            if (rotor_3_test[i] == currentLetter - 65)
-                            {
-                                currentLetter = (char)i;
-                                break;
-                            }
-                        }
-
-                        currentLetter = (char)rotor3_rotor2[currentLetter];
-
-                        currentLetter = (char)rotor_2_test[currentLetter];
-
-                        currentLetter = (char)rotor2_rotor1[currentLetter];
-
-                        currentLetter = (char)rotor_1_test[currentLetter];
-
-                        if (Reflector.ContainsKey(currentLetter))
-                        {
-                            currentLetter = (char)Reflector[currentLetter];
-                        }
-                        else
-                        {
-                            currentLetter = (char)Reflector.First(x => x.Value == currentLetter).Key;
-                        }
-
-                        currentLetter = (char)rotor_1_test[currentLetter];
-
-                        currentLetter = (char)rotor2_rotor1[currentLetter];
-
-                        currentLetter = (char)rotor_2_test[currentLetter];
-
-                        currentLetter = (char)rotor3_rotor2[currentLetter];
-
-                        currentLetter = (char)rotor_3_test[currentLetter];
-
-                        for (int i = 0; i < rotor_3_test.Count; i++)
-                        {
-                            if (rotor_3_test[i] == currentLetter)
-                            {
-                                currentLetter = (char)i;
-                                break;
-                            }
-                        }
-
-                        if (Char.IsUpper(richTextBox1.Text[richTextBox1.Text.Length - 1]))
-                        {
-                            label5.Text += (char)(rotor_3_test[currentLetter] + 65);
-                        }
-                        else
-                            label5.Text += char.ToLower((char)(rotor_3_test[currentLetter] + 65));
-
-                        //Rotors rotation
-                        if (int.Parse(comboBox1.Text) == 26 && int.Parse(comboBox2.Text) % 4 == 0 && int.Parse(comboBox3.Text) % 6 == 0)
-                        {
-                            comboBox1.Text = 1.ToString();
-                        }
-                        else if (int.Parse(comboBox2.Text) % 4 == 0 && int.Parse(comboBox3.Text) % 6 == 0)
-                        {
-                            comboBox1.Text = (int.Parse(comboBox1.Text) + 1).ToString();
-                        }
-
-                        if (int.Parse(comboBox2.Text) == 26 && int.Parse(comboBox3.Text) % 6 == 0)
-                        {
-                            comboBox2.Text = 1.ToString();
-                        }
-                        else if (int.Parse(comboBox3.Text) % 6 == 0)
-                        {
-                            comboBox2.Text = (int.Parse(comboBox2.Text) + 1).ToString();
-                        }
-
-                        if (int.Parse(comboBox3.Text) == 26)
-                        {
-                            comboBox3.Text = 1.ToString();
-                        }
-                        else
-                            comboBox3.Text = (int.Parse(comboBox3.Text) + 1).ToString();
-
-                        #endregion
-=======
->>>>>>> Stashed changes
                     }
 
                     currentLetter = (char)rotor3_rotor2[currentLetter];
@@ -388,7 +301,6 @@ namespace _1st_try
 =======
 
             richTextBox1.Enabled = true;
->>>>>>> Stashed changes
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
