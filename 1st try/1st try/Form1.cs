@@ -297,9 +297,6 @@ namespace _1st_try
             {
                 label5.Text = ex.Message;
             }
-<<<<<<< Updated upstream
-=======
-
             richTextBox1.Enabled = true;
         }
 

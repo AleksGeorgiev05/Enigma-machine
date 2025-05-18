@@ -18,12 +18,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
@@ -48,7 +44,7 @@
               "RelativeDocumentMoniker": "1st try\\Form1.cs",
               "ToolTip": "C:\\Users\\kyord\\Desktop\\Enigma-machine\\1st try\\1st try\\Form1.cs",
               "RelativeToolTip": "1st try\\Form1.cs",
-              "ViewState": "AgIAAM4AAAAAAAAAAAAcwOUAAAAkAAAAAAAAAA==",
+              "ViewState": "AgIAAIcAAAAAAAAAAAAwwNgAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-18T08:51:36.524Z",
               "EditorCaption": ""
