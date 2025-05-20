@@ -2,10 +2,9 @@
 
 done - "New message" button which clears label5 and richtextBox and enables radioButtons and comboBoxes 
 - Multiple language UI
-- Usupported symbol protection -> for cycle
+done - Unsupported symbol protection -> for cycle
 - Numbers encryption
 - Decryption
-- Methods
 - Error label
 - Enable to erase
 */
@@ -184,15 +183,12 @@ namespace _1st_try
             try
             {
                 bool isLetter = true;
-                //for cycle -> to check for all en letter using ASCII and determine isLetter`s value
-                if (richTextBox1.Text[richTextBox1.Text.Length - 1] == '.' ||
-                    richTextBox1.Text[richTextBox1.Text.Length - 1] == ',' ||
-                    richTextBox1.Text[richTextBox1.Text.Length - 1] == '!' ||
-                    richTextBox1.Text[richTextBox1.Text.Length - 1] == '?' ||
-                    richTextBox1.Text[richTextBox1.Text.Length - 1] == ' ')
+                if (!(((int)richTextBox1.Text[richTextBox1.Text.Length - 1] >= 65 &&
+                    (int)richTextBox1.Text[richTextBox1.Text.Length - 1] <= 90) ||
+                    ((int)richTextBox1.Text[richTextBox1.Text.Length - 1] >= 97 &&
+                    (int)richTextBox1.Text[richTextBox1.Text.Length - 1] <= 122)))
                 {
                     isLetter = false;
-                    label5.Text += richTextBox1.Text[richTextBox1.Text.Length - 1];
                 }
 
                 if (flag_comboBox1 && flag_comboBox2 && flag_comboBox3 && radioButton1.Checked && isLetter)
@@ -211,6 +207,7 @@ namespace _1st_try
                             richTextBox1.Text = "";
                         }
                         label5.Text = "";
+                        label3.Text = "";
                     }
 
                     #region Encryption
@@ -295,7 +292,7 @@ namespace _1st_try
             }
             catch (Exception ex)
             {
-                label5.Text = ex.Message;
+                label3.Text = "RichTextBox\n" + ex.Message;
             }
             richTextBox1.Enabled = true;
         }
@@ -349,78 +346,118 @@ namespace _1st_try
             try
             {
                 bool isLetter = true;
-                if (richTextBox1.Text[richTextBox1.Text.Length - 1] == '.' ||
-                    richTextBox1.Text[richTextBox1.Text.Length - 1] == ',' ||
-                    richTextBox1.Text[richTextBox1.Text.Length - 1] == '!' ||
-                    richTextBox1.Text[richTextBox1.Text.Length - 1] == '?' ||
-                    richTextBox1.Text[richTextBox1.Text.Length - 1] == ' ')
-                {
-                    isLetter = false;
-                    label5.Text += richTextBox1.Text[richTextBox1.Text.Length - 1];
-                }
 
-                if (flag_comboBox1 && flag_comboBox2 && flag_comboBox3 && radioButton2.Checked && richTextBox1.Text != "" && isLetter)
+                foreach (var item in richTextBox1.Text)
                 {
-                    comboBox1.Enabled = false;
-                    comboBox2.Enabled = false;
-                    comboBox3.Enabled = false;
-                    radioButton1.Enabled = false;
-                    radioButton2.Enabled = false;
-
-                    if (label5.Text == "Make sure that the you have checked encryption or decryption\nand rotors are set to the right setting."
-                        || label5.Text == "Your message will show here!")
+                    isLetter = true;
+                    if (!(((int)richTextBox1.Text[richTextBox1.Text.Length - 1] >= 65 &&
+                        (int)richTextBox1.Text[richTextBox1.Text.Length - 1] <= 90) ||
+                        ((int)richTextBox1.Text[richTextBox1.Text.Length - 1] >= 97 &&
+                        (int)richTextBox1.Text[richTextBox1.Text.Length - 1] <= 122)))
                     {
-                        if (label5.Text == "Make sure that the you have checked encryption or decryption\nand rotors are set to the right setting.")
-                        {
-                            richTextBox1.Text = "";
-                        }
-                        label5.Text = "";
+                        isLetter = false;
                     }
 
-                    for (int i = 0; i < richTextBox1.Text.Length; i++)
+                    if (flag_comboBox1 && flag_comboBox2 && flag_comboBox3 && radioButton2.Checked && richTextBox1.Text != "" && isLetter)
                     {
-                        bool isUpper = false;
-                        char currentLetter = Char.ToUpper(richTextBox1.Text[i]);
-                        for (int j = 0; j < rotor_3.Count; j++)
+                        comboBox1.Enabled = false;
+                        comboBox2.Enabled = false;
+                        comboBox3.Enabled = false;
+                        radioButton1.Enabled = false;
+                        radioButton2.Enabled = false;
+
+                        if (label5.Text == "Make sure that the you have checked encryption or decryption\nand rotors are set to the right setting."
+                            || label5.Text == "Your message will show here!")
                         {
-                            if (currentLetter == rotor_3[j])
+                            if (label5.Text == "Make sure that the you have checked encryption or decryption\nand rotors are set to the right setting.")
                             {
-                                currentLetter = (char)j;
+                                richTextBox1.Text = "";
+                            }
+                            label5.Text = "";
+                            label3.Text = "";
+                        }
+
+                        //Decryption logic
+                        char currentLetter = Char.ToUpper(richTextBox1.Text[richTextBox1.Text.Length - 1]);
+
+                        for (int i = 0; i < rotor_3_test.Count; i++)
+                        {
+                            if (rotor_3_test[i] == currentLetter - 65)
+                            {
+                                currentLetter = (char)i;
                                 break;
                             }
                         }
-                        //currentLetter = rotor_3[currentLetter];
 
-                        currentLetter = (char)rotor3_rotor2.First(x => x.Value == currentLetter).Key; //currentLetter pak stava 'V' vmesto 19
+                        currentLetter = (char)rotor3_rotor2.First(x => x.Value == currentLetter).Key;
+
+                        currentLetter = (char)rotor_2_test.IndexOf(currentLetter);
+
                         currentLetter = (char)rotor2_rotor1.First(x => x.Value == currentLetter).Key;
+
+                        currentLetter = (char)rotor_1_test.IndexOf(currentLetter);
 
                         if (Reflector.ContainsKey(currentLetter))
                         {
                             currentLetter = (char)Reflector[currentLetter];
                         }
                         else
-                            currentLetter = (char)Reflector.FirstOrDefault(x => x.Value == currentLetter).Key;
+                        {
+                            currentLetter = (char)Reflector.First(x => x.Value == currentLetter).Key;
+                        }
+
+                        currentLetter = (char)rotor_1_test.IndexOf(currentLetter);
 
                         currentLetter = (char)rotor2_rotor1.First(x => x.Value == currentLetter).Key;
+
+                        currentLetter = (char)rotor_2_test.IndexOf(currentLetter);
+
                         currentLetter = (char)rotor3_rotor2.First(x => x.Value == currentLetter).Key;
 
-                        if (isUpper)
+                        currentLetter = (char)rotor_3_test.IndexOf(currentLetter);
+
+                        if (Char.IsUpper(richTextBox1.Text[richTextBox1.Text.Length - 1]))
                         {
-                            label5.Text += rotor_3[currentLetter];
+                            label5.Text += (char)(currentLetter + 65);
                         }
                         else
-                            label5.Text += (char)((int)rotor_3[currentLetter] + 32);
+                            label5.Text += char.ToLower((char)(currentLetter + 65));
+
+                        //Rotors rotation
+                        if (int.Parse(comboBox1.Text) == 26 && int.Parse(comboBox2.Text) % 4 == 0 && int.Parse(comboBox3.Text) % 6 == 0)
+                        {
+                            comboBox1.Text = 1.ToString();
+                        }
+                        else if (int.Parse(comboBox2.Text) % 4 == 0 && int.Parse(comboBox3.Text) % 6 == 0)
+                        {
+                            comboBox1.Text = (int.Parse(comboBox1.Text) + 1).ToString();
+                        }
+
+                        if (int.Parse(comboBox2.Text) == 26 && int.Parse(comboBox3.Text) % 6 == 0)
+                        {
+                            comboBox2.Text = 1.ToString();
+                        }
+                        else if (int.Parse(comboBox3.Text) % 6 == 0)
+                        {
+                            comboBox2.Text = (int.Parse(comboBox2.Text) + 1).ToString();
+                        }
+
+                        if (int.Parse(comboBox3.Text) == 26)
+                        {
+                            comboBox3.Text = 1.ToString();
+                        }
+                        else
+                            comboBox3.Text = (int.Parse(comboBox3.Text) + 1).ToString();
+                    }
+                    else if (isLetter)
+                    {
+                        label5.Text = "Make sure that the you have checked encryption or decryption\nand rotors are set to the right setting.";
                     }
                 }
-                else if (isLetter)
-                {
-                    label5.Text = "Make sure that the you have checked encryption or decryption\nand rotors are set to the right setting.";
-                }
-
             }
             catch (Exception ex)
             {
-                label5.Text = ex.Message;
+                label3.Text = "Decryption\n" + ex.Message;
             }
             #endregion
         }
