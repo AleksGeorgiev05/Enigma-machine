@@ -35,11 +35,10 @@ namespace _1st_try
             comboBox3 = new ComboBox();
             label1 = new Label();
             richTextBox1 = new RichTextBox();
-            radioButton1 = new RadioButton();
-            radioButton2 = new RadioButton();
             button1 = new Button();
             button2 = new Button();
             label3 = new Label();
+            button3 = new Button();
             SuspendLayout();
             // 
             // label5
@@ -61,7 +60,7 @@ namespace _1st_try
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(121, 23);
             comboBox1.TabIndex = 10;
-            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            comboBox1.SelectedIndexChanged += CB1_Rotor3;
             // 
             // comboBox2
             // 
@@ -72,7 +71,7 @@ namespace _1st_try
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(121, 23);
             comboBox2.TabIndex = 11;
-            comboBox2.SelectedIndexChanged += comboBox2_SelectedIndexChanged_1;
+            comboBox2.SelectedIndexChanged += CB2_Rotor2;
             // 
             // comboBox3
             // 
@@ -83,7 +82,7 @@ namespace _1st_try
             comboBox3.Name = "comboBox3";
             comboBox3.Size = new Size(121, 23);
             comboBox3.TabIndex = 12;
-            comboBox3.SelectedIndexChanged += comboBox3_SelectedIndexChanged_2;
+            comboBox3.SelectedIndexChanged += CB3_Rotor1;
             // 
             // label1
             // 
@@ -93,7 +92,6 @@ namespace _1st_try
             label1.Size = new Size(122, 15);
             label1.TabIndex = 14;
             label1.Text = "Enter your text below!";
-            label1.Click += label1_Click;
             // 
             // richTextBox1
             // 
@@ -102,64 +100,49 @@ namespace _1st_try
             richTextBox1.Size = new Size(122, 115);
             richTextBox1.TabIndex = 15;
             richTextBox1.Text = "";
-            richTextBox1.TextChanged += richTextBox1_TextChanged;
-            // 
-            // radioButton1
-            // 
-            radioButton1.AutoSize = true;
-            radioButton1.Location = new Point(79, 43);
-            radioButton1.Margin = new Padding(3, 2, 3, 2);
-            radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(82, 19);
-            radioButton1.TabIndex = 16;
-            radioButton1.TabStop = true;
-            radioButton1.Text = "Encryption";
-            radioButton1.UseVisualStyleBackColor = true;
-            radioButton1.CheckedChanged += radioButton1_CheckedChanged;
-            // 
-            // radioButton2
-            // 
-            radioButton2.AutoSize = true;
-            radioButton2.Location = new Point(204, 43);
-            radioButton2.Margin = new Padding(3, 2, 3, 2);
-            radioButton2.Name = "radioButton2";
-            radioButton2.Size = new Size(83, 19);
-            radioButton2.TabIndex = 17;
-            radioButton2.TabStop = true;
-            radioButton2.Text = "Decryption";
-            radioButton2.UseVisualStyleBackColor = true;
-            radioButton2.CheckedChanged += radioButton2_CheckedChanged;
             // 
             // button1
             // 
-            button1.Location = new Point(80, 374);
+            button1.Location = new Point(624, 366);
             button1.Margin = new Padding(3, 2, 3, 2);
             button1.Name = "button1";
             button1.Size = new Size(121, 28);
             button1.TabIndex = 18;
+            button1.TabStop = false;
             button1.Text = "New Message";
             button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            button1.Click += NewMessage;
             // 
             // button2
             // 
-            button2.Location = new Point(80, 330);
+            button2.Location = new Point(79, 366);
             button2.Margin = new Padding(3, 2, 3, 2);
             button2.Name = "button2";
             button2.Size = new Size(121, 28);
             button2.TabIndex = 19;
+            button2.TabStop = false;
             button2.Text = "Decrypt";
             button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            button2.Click += Decryption;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(610, 374);
+            label3.Location = new Point(573, 30);
             label3.Name = "label3";
             label3.Size = new Size(13, 15);
             label3.TabIndex = 20;
             label3.Text = "  ";
+            // 
+            // button3
+            // 
+            button3.Location = new Point(80, 333);
+            button3.Name = "button3";
+            button3.Size = new Size(122, 28);
+            button3.TabIndex = 21;
+            button3.Text = "Encrypt";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += Encryption;
             // 
             // Form1
             // 
@@ -167,20 +150,19 @@ namespace _1st_try
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
             ClientSize = new Size(800, 450);
+            Controls.Add(button3);
             Controls.Add(label3);
             Controls.Add(button2);
             Controls.Add(button1);
-            Controls.Add(radioButton2);
-            Controls.Add(radioButton1);
             Controls.Add(richTextBox1);
             Controls.Add(label1);
             Controls.Add(comboBox3);
             Controls.Add(comboBox2);
             Controls.Add(comboBox1);
             Controls.Add(label5);
+            KeyPreview = true;
             Name = "Form1";
             Text = "Form1";
-            Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -193,11 +175,10 @@ namespace _1st_try
         private ComboBox comboBox3;
         private Label label1;
         private RichTextBox richTextBox1;
-        private RadioButton radioButton1;
-        private RadioButton radioButton2;
         private Label label2;
         private Button button1;
         private Button button2;
         private Label label3;
+        private Button button3;
     }
 }
