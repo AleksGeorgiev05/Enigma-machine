@@ -22,11 +22,12 @@ namespace _1st_try
         public Form1()
         {
             InitializeComponent();
-            InitialiseAlphabet();
             InitialiseRotors();
         }
 
-        private List<char> alphabet = new List<char>();
+        private bool flag_comboBox1 = false;
+        private bool flag_comboBox2 = false;
+        private bool flag_comboBox3 = false;
 
         private List<int> rotor_1 = new List<int>();
         private List<int> rotor_2 = new List<int>();
@@ -39,13 +40,13 @@ namespace _1st_try
         private Dictionary<int, int> Reflector = new Dictionary<int, int> { { 19, 25 }, { 22, 16 }, { 3, 10 }, { 6, 8 }, { 20, 12 }, { 1, 5 }, { 24, 13 },
         { 2, 17 }, { 21, 11 }, { 14, 9 }, { 18, 7 }, { 4, 15 }, { 0, 23 } };
 
-        private bool flag_comboBox1 = false;
-        private bool flag_comboBox2 = false;
-        private bool flag_comboBox3 = false;
-
         #region Methods
         private void InitialiseRotors()
         {
+            rotor_1.Clear();
+            rotor_2.Clear();
+            rotor_3.Clear();
+
             for (int i = 0; i < 26; i++)
             {
                 rotor_1.Add(i);
@@ -53,14 +54,7 @@ namespace _1st_try
                 rotor_3.Add(i);
             }
         }
-        private void InitialiseAlphabet()
-        {
-            for (int i = 0; i < 26; i++)
-            {
-                alphabet.Add((char)(i + 65));
-            }
-        }
-        private List<int> RotateRotor(List<int> rotor, int rotations)//List<char>
+        private List<int> RotateRotor(List<int> rotor, int rotations)
         {
             for (int i = 0; i < rotations; i++)
             {
@@ -72,22 +66,6 @@ namespace _1st_try
                 rotor[rotor.Count - 1] = temp;
             }
             return rotor;
-        }
-        private List<char> Shuffle(List<char> list)
-        {
-            char[] shuffled_arr = new char[list.Count];
-            Random rnd = new Random();
-
-            for (int i = 0; i < list.Count; i++)
-            {
-                int a;
-                do
-                {
-                    a = rnd.Next(list.Count);
-                } while (shuffled_arr[a].ToString() != "\0");
-                shuffled_arr[a] = list[i];
-            }
-            return shuffled_arr.ToList();
         }
         #endregion
 
@@ -159,14 +137,146 @@ namespace _1st_try
             comboBox3.Enabled = true;
         }
 
-        private void Decryption(object sender, EventArgs e)
+        private void Encryption(object sender, EventArgs e)
         {
+            #region Encryption
+
             richTextBox1.Enabled = false;
-            #region Decryption
             try
             {
                 bool isLetter = true;
 
+                label5.Text = string.Empty;
+                foreach (var item in richTextBox1.Text)
+                {
+                    if (!string.IsNullOrEmpty(richTextBox1.Text))
+                    {
+                        if (!(((int)richTextBox1.Text[richTextBox1.Text.Length - 1] >= 65 &&
+                            (int)richTextBox1.Text[richTextBox1.Text.Length - 1] <= 90) ||
+                            ((int)richTextBox1.Text[richTextBox1.Text.Length - 1] >= 97 &&
+                            (int)richTextBox1.Text[richTextBox1.Text.Length - 1] <= 122)))
+                        {
+                            isLetter = false;
+                        }
+                        if (flag_comboBox1 && flag_comboBox2 && flag_comboBox3 && isLetter)
+                        {
+                            comboBox1.Enabled = false;
+                            comboBox2.Enabled = false;
+                            comboBox3.Enabled = false;
+
+
+                            if (label5.Text == "Make sure that the rotors are set to the right setting."
+                                || label5.Text == "Your message will show here!")
+                            {
+                                if (label5.Text == "Make sure that the rotors are set to the right setting.")
+                                {
+                                    richTextBox1.Text = "";
+                                }
+                                label5.Text = "";
+                                label3.Text = "";
+                            }
+
+
+                            //Encryption logic
+                            char currentLetter = Char.ToUpper(item);
+
+                            for (int i = 0; i < rotor_3.Count; i++)
+                            {
+                                if (rotor_3[i] == currentLetter - 65)
+                                {
+                                    currentLetter = (char)i;
+                                    break;
+                                }
+                            }
+
+                            currentLetter = (char)rotor3_rotor2[currentLetter];
+
+                            currentLetter = (char)rotor_2[currentLetter];
+
+                            currentLetter = (char)rotor2_rotor1[currentLetter];
+
+                            currentLetter = (char)rotor_1[currentLetter];
+
+                            if (Reflector.ContainsKey(currentLetter))
+                            {
+                                currentLetter = (char)Reflector[currentLetter];
+                            }
+                            else
+                            {
+                                currentLetter = (char)Reflector.First(x => x.Value == currentLetter).Key;
+                            }
+
+                            currentLetter = (char)rotor_1[currentLetter];
+
+                            currentLetter = (char)rotor2_rotor1[currentLetter];
+
+                            currentLetter = (char)rotor_2[currentLetter];
+
+                            currentLetter = (char)rotor3_rotor2[currentLetter];
+
+                            currentLetter = (char)rotor_3[currentLetter];
+
+                            if (Char.IsUpper(item))
+                            {
+                                label5.Text += (char)(currentLetter + 65);
+                            }
+                            else
+                                label5.Text += char.ToLower((char)(currentLetter + 65));
+
+                            //Rotors rotation
+                            if (int.Parse(comboBox1.Text) == 26 && int.Parse(comboBox2.Text) % 4 == 0 && int.Parse(comboBox3.Text) % 6 == 0)
+                            {
+                                comboBox1.Text = 1.ToString();
+                            }
+                            else if (int.Parse(comboBox2.Text) % 4 == 0 && int.Parse(comboBox3.Text) % 6 == 0)
+                            {
+                                comboBox1.Text = (int.Parse(comboBox1.Text) + 1).ToString();
+                            }
+
+                            if (int.Parse(comboBox2.Text) == 26 && int.Parse(comboBox3.Text) % 6 == 0)
+                            {
+                                comboBox2.Text = 1.ToString();
+                            }
+                            else if (int.Parse(comboBox3.Text) % 6 == 0)
+                            {
+                                comboBox2.Text = (int.Parse(comboBox2.Text) + 1).ToString();
+                            }
+
+                            if (int.Parse(comboBox3.Text) == 26)
+                            {
+                                comboBox3.Text = 1.ToString();
+                            }
+                            else
+                                comboBox3.Text = (int.Parse(comboBox3.Text) + 1).ToString();
+
+
+                        }
+                        else if (isLetter)
+                        {
+                            label5.Text = "Make sure that the rotors are set to the right setting.";
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                label3.Text = "Encryption\n" + ex.Message;
+            }
+            richTextBox1.Enabled = true;
+            richTextBox1.Focus();
+            #endregion
+        }
+
+        private void Decryption(object sender, EventArgs e)
+        {
+            #region Decryption
+            
+            richTextBox1.Enabled = false;
+            try
+            {
+                bool isLetter = true;
+
+                label5.Text = string.Empty;
                 foreach (var item in richTextBox1.Text)
                 {
                     isLetter = true;
@@ -184,10 +294,10 @@ namespace _1st_try
                         comboBox2.Enabled = false;
                         comboBox3.Enabled = false;
 
-                        if (label5.Text == "Make sure that the you have checked encryption or decryption\nand rotors are set to the right setting."
+                        if (label5.Text == "Make sure that the rotors are set to the right setting."
                             || label5.Text == "Your message will show here!")
                         {
-                            if (label5.Text == "Make sure that the you have checked encryption or decryption\nand rotors are set to the right setting.")
+                            if (label5.Text == "Make sure that the rotors are set to the right setting.")
                             {
                                 richTextBox1.Text = "";
                             }
@@ -269,7 +379,7 @@ namespace _1st_try
                     }
                     else if (isLetter)
                     {
-                        label5.Text = "Make sure that the you have checked encryption or decryption\nand rotors are set to the right setting.";
+                        label5.Text = "Make sure that the rotors are set to the right setting.";
                     }
                 }
             }
@@ -280,131 +390,6 @@ namespace _1st_try
             richTextBox1.Enabled = true;
             richTextBox1.Focus();
             #endregion
-        }
-
-        private void Encryption(object sender, EventArgs e)
-        {
-            richTextBox1.Enabled = false;
-            try
-            {
-                bool isLetter = true;
-                foreach (var item in richTextBox1.Text)
-                {
-                    if (!string.IsNullOrEmpty(richTextBox1.Text))
-                    {
-                        if (!(((int)richTextBox1.Text[richTextBox1.Text.Length - 1] >= 65 &&
-                            (int)richTextBox1.Text[richTextBox1.Text.Length - 1] <= 90) ||
-                            ((int)richTextBox1.Text[richTextBox1.Text.Length - 1] >= 97 &&
-                            (int)richTextBox1.Text[richTextBox1.Text.Length - 1] <= 122)))
-                        {
-                            isLetter = false;
-                        }
-                        if (flag_comboBox1 && flag_comboBox2 && flag_comboBox3 && isLetter)
-                        {
-                            comboBox1.Enabled = false;
-                            comboBox2.Enabled = false;
-                            comboBox3.Enabled = false;
-
-
-                            if (label5.Text == "Make sure that the you have checked encryption or decryption\nand rotors are set to the right setting."
-                                || label5.Text == "Your message will show here!")
-                            {
-                                if (label5.Text == "Make sure that the you have checked encryption or decryption\nand rotors are set to the right setting.")
-                                {
-                                    richTextBox1.Text = "";
-                                }
-                                label5.Text = "";
-                                label3.Text = "";
-                            }
-
-                            #region Encryption
-                            //Encryption logic
-                            char currentLetter = Char.ToUpper(item);
-
-                            for (int i = 0; i < rotor_3.Count; i++)
-                            {
-                                if (rotor_3[i] == currentLetter - 65)
-                                {
-                                    currentLetter = (char)i;
-                                    break;
-                                }
-                            }
-
-                            currentLetter = (char)rotor3_rotor2[currentLetter];
-
-                            currentLetter = (char)rotor_2[currentLetter];
-
-                            currentLetter = (char)rotor2_rotor1[currentLetter];
-
-                            currentLetter = (char)rotor_1[currentLetter];
-
-                            if (Reflector.ContainsKey(currentLetter))
-                            {
-                                currentLetter = (char)Reflector[currentLetter];
-                            }
-                            else
-                            {
-                                currentLetter = (char)Reflector.First(x => x.Value == currentLetter).Key;
-                            }
-
-                            currentLetter = (char)rotor_1[currentLetter];
-
-                            currentLetter = (char)rotor2_rotor1[currentLetter];
-
-                            currentLetter = (char)rotor_2[currentLetter];
-
-                            currentLetter = (char)rotor3_rotor2[currentLetter];
-
-                            currentLetter = (char)rotor_3[currentLetter];
-
-                            if (Char.IsUpper(item))
-                            {
-                                label5.Text += (char)(currentLetter + 65);
-                            }
-                            else
-                                label5.Text += char.ToLower((char)(currentLetter + 65));
-
-                            //Rotors rotation
-                            if (int.Parse(comboBox1.Text) == 26 && int.Parse(comboBox2.Text) % 4 == 0 && int.Parse(comboBox3.Text) % 6 == 0)
-                            {
-                                comboBox1.Text = 1.ToString();
-                            }
-                            else if (int.Parse(comboBox2.Text) % 4 == 0 && int.Parse(comboBox3.Text) % 6 == 0)
-                            {
-                                comboBox1.Text = (int.Parse(comboBox1.Text) + 1).ToString();
-                            }
-
-                            if (int.Parse(comboBox2.Text) == 26 && int.Parse(comboBox3.Text) % 6 == 0)
-                            {
-                                comboBox2.Text = 1.ToString();
-                            }
-                            else if (int.Parse(comboBox3.Text) % 6 == 0)
-                            {
-                                comboBox2.Text = (int.Parse(comboBox2.Text) + 1).ToString();
-                            }
-
-                            if (int.Parse(comboBox3.Text) == 26)
-                            {
-                                comboBox3.Text = 1.ToString();
-                            }
-                            else
-                                comboBox3.Text = (int.Parse(comboBox3.Text) + 1).ToString();
-
-                            #endregion
-                        }
-                        else if (isLetter)
-                        {
-                            label5.Text = "Make sure that the you have checked encryption or decryption\nand rotors are set to the right setting.";
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                label3.Text = "Encryption\n" + ex.Message;
-            }
-            richTextBox1.Enabled = true;
-            richTextBox1.Focus();
         }
     }
 }
