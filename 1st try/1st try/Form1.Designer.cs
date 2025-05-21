@@ -39,8 +39,8 @@ namespace _1st_try
             button2 = new Button();
             label3 = new Label();
             button3 = new Button();
-            button4 = new Button();
-            button5 = new Button();
+            radioButton1 = new RadioButton();
+            radioButton2 = new RadioButton();
             SuspendLayout();
             // 
             // label5
@@ -97,6 +97,7 @@ namespace _1st_try
             label1.Size = new Size(154, 20);
             label1.TabIndex = 14;
             label1.Text = "Enter your text below!";
+            label1.Click += label1_Click;
             // 
             // richTextBox1
             // 
@@ -106,6 +107,7 @@ namespace _1st_try
             richTextBox1.Size = new Size(139, 152);
             richTextBox1.TabIndex = 15;
             richTextBox1.Text = "";
+            richTextBox1.TextChanged += richTextBox1_TextChanged;
             // 
             // button1
             // 
@@ -149,24 +151,29 @@ namespace _1st_try
             button3.UseVisualStyleBackColor = true;
             button3.Click += Encryption;
             // 
-            // button4
+            // radioButton1
             // 
-            button4.Location = new Point(27, 31);
-            button4.Name = "button4";
-            button4.Size = new Size(39, 29);
-            button4.TabIndex = 22;
-            button4.Text = "EN";
-            button4.UseVisualStyleBackColor = true;
-            button4.Click += button4_Click;
+            radioButton1.AutoSize = true;
+            radioButton1.Location = new Point(12, 12);
+            radioButton1.Name = "radioButton1";
+            radioButton1.Size = new Size(49, 24);
+            radioButton1.TabIndex = 22;
+            radioButton1.TabStop = true;
+            radioButton1.Text = "EN";
+            radioButton1.UseVisualStyleBackColor = true;
+            radioButton1.CheckedChanged += radioButton1_CheckedChanged;
             // 
-            // button5
+            // radioButton2
             // 
-            button5.Location = new Point(72, 31);
-            button5.Name = "button5";
-            button5.Size = new Size(39, 29);
-            button5.TabIndex = 23;
-            button5.Text = "BG";
-            button5.UseVisualStyleBackColor = true;
+            radioButton2.AutoSize = true;
+            radioButton2.Location = new Point(12, 42);
+            radioButton2.Name = "radioButton2";
+            radioButton2.Size = new Size(49, 24);
+            radioButton2.TabIndex = 23;
+            radioButton2.TabStop = true;
+            radioButton2.Text = "BG";
+            radioButton2.UseVisualStyleBackColor = true;
+            radioButton2.CheckedChanged += radioButton2_CheckedChanged;
             // 
             // Form1
             // 
@@ -174,8 +181,8 @@ namespace _1st_try
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
             ClientSize = new Size(914, 600);
-            Controls.Add(button5);
-            Controls.Add(button4);
+            Controls.Add(radioButton2);
+            Controls.Add(radioButton1);
             Controls.Add(button3);
             Controls.Add(label3);
             Controls.Add(button2);
@@ -207,7 +214,7 @@ namespace _1st_try
         private Button button2;
         private Label label3;
         private Button button3;
-        private Button button4;
-        private Button button5;
+        private RadioButton radioButton1;
+        private RadioButton radioButton2;
     }
 }

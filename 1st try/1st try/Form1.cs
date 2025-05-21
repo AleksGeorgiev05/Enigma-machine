@@ -1,7 +1,8 @@
-/*TO DO
-- Multiple language UI
+﻿/*TO DO
 ? - Numbers encryption
 - Enable to erase
+- Unsupported symbol
+done - Multiple language UI
 done - Unsupported symbol protection
 done - Decryption
 done - Error label
@@ -122,10 +123,13 @@ namespace _1st_try
         private void NewMessage(object sender, EventArgs e)
         {
             richTextBox1.Text = string.Empty;
-            label5.Text = "Your message will show here!";
             label3.Text = string.Empty;
 
-
+            if (radioButton1.Checked)
+            {
+                label5.Text = "Your message will show here!";
+            }
+            else label5.Text = "Съобщението ще се покаже тук.";
 
             comboBox1.SelectedIndex = -1;
             comboBox2.SelectedIndex = -1;
@@ -169,11 +173,13 @@ namespace _1st_try
                             comboBox2.Enabled = false;
                             comboBox3.Enabled = false;
 
-
                             if (label5.Text == "Make sure that the rotors are set to the right setting."
-                                || label5.Text == "Your message will show here!")
+                                || label5.Text == "Your message will show here!"
+                                || label5.Text == "Уверете се, че роторите са на правилната настройка."
+                                || label5.Text == "Съобщението ще се покаже тук")
                             {
-                                if (label5.Text == "Make sure that the rotors are set to the right setting.")
+                                if (label5.Text == "Make sure that the rotors are set to the right setting."
+                                    || label5.Text == "Уверете се, че роторите са на правилната настройка.")
                                 {
                                     richTextBox1.Text = "";
                                 }
@@ -258,7 +264,11 @@ namespace _1st_try
                         }
                         else if (isLetter)
                         {
-                            label5.Text = "Make sure that the rotors are set to the right setting.";
+                            if (radioButton1.Checked)
+                            {
+                                label5.Text = "Make sure that the rotors are set to the right setting.";
+                            }
+                            else label5.Text = "Уверете се, че роторите са на правилната настройка.";
                         }
                     }
                 }
@@ -299,9 +309,13 @@ namespace _1st_try
                         comboBox3.Enabled = false;
 
                         if (label5.Text == "Make sure that the rotors are set to the right setting."
-                            || label5.Text == "Your message will show here!")
+                            || label5.Text == "Your message will show here!"
+                            || label5.Text == "Уверете се, че роторите са на правилната настройка."
+                            || label5.Text == "Съобщението ще се покаже тук."
+                            )
                         {
-                            if (label5.Text == "Make sure that the rotors are set to the right setting.")
+                            if (label5.Text == "Make sure that the rotors are set to the right setting."
+                                || label5.Text == "Уверете се, че роторите са на правилната настройка.")
                             {
                                 richTextBox1.Text = "";
                             }
@@ -383,7 +397,11 @@ namespace _1st_try
                     }
                     else if (isLetter)
                     {
-                        label5.Text = "Make sure that the rotors are set to the right setting.";
+                        if (radioButton1.Checked)
+                        {
+                            label5.Text = "Make sure that the rotors are set to the right setting.";
+                        }
+                        else label5.Text = "Уверете се, че роторите са на правилната настройка.";
                     }
                 }
             }
@@ -398,7 +416,41 @@ namespace _1st_try
 
         private void button4_Click(object sender, EventArgs e)
         {
-            label
+
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (label5.Text == "" || label5.Text == "Съобщението ще се покаже тук.")
+            {
+                label5.Text = "Your message will show here!";
+            }
+            if (label1.Text == "Въведете текста долу.")
+            {
+                label1.Text = "Enter your text below!";
+            }
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (label5.Text == "" || label5.Text == "Your message will show here!")
+            {
+                label5.Text = "Съобщението ще се покаже тук.";
+            }
+            if (label1.Text == "Enter your text below!")
+            {
+                label1.Text = "Въведете текста долу.";
+            }
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
