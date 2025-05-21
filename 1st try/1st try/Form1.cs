@@ -1,13 +1,12 @@
 /*TO DO
-
-done - "New message" button which clears label5 and richtextBox and enables radioButtons and comboBoxes 
 - Multiple language UI
-done - Unsupported symbol protection -> for cycle
 ? - Numbers encryption
+- Enable to erase
+done - Unsupported symbol protection
 done - Decryption
 done - Error label
-- Enable to erase
 done - ComboBox initialisation
+done - "New message" button which clears label5 and richtextBox and enables radioButtons and comboBoxes 
 */
 using System.Collections;
 using System.Drawing.Design;
