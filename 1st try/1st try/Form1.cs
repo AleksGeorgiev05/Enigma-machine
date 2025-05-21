@@ -125,15 +125,21 @@ namespace _1st_try
             label5.Text = "Your message will show here!";
             label3.Text = string.Empty;
 
-            InitialiseRotors();
+
 
             comboBox1.SelectedIndex = -1;
             comboBox2.SelectedIndex = -1;
             comboBox3.SelectedIndex = -1;
 
+            InitialiseRotors();
+
             comboBox1.Enabled = true;
             comboBox2.Enabled = true;
             comboBox3.Enabled = true;
+
+            flag_comboBox1 = false;
+            flag_comboBox2 = false;
+            flag_comboBox3 = false;
         }
 
         private void Encryption(object sender, EventArgs e)
@@ -265,11 +271,10 @@ namespace _1st_try
             richTextBox1.Focus();
             #endregion
         }
-
         private void Decryption(object sender, EventArgs e)
         {
             #region Decryption
-            
+
             richTextBox1.Enabled = false;
             try
             {
@@ -389,6 +394,11 @@ namespace _1st_try
             richTextBox1.Enabled = true;
             richTextBox1.Focus();
             #endregion
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            label
         }
     }
 }
