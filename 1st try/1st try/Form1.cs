@@ -125,11 +125,11 @@ namespace _1st_try
             richTextBox1.Text = string.Empty;
             label3.Text = string.Empty;
 
-            if (radioButton1.Checked)
+            if (radioButton2.Checked)
             {
-                label5.Text = "Your message will show here!";
+                label5.Text = "Съобщението ще се покаже тук.";
             }
-            else label5.Text = "Съобщението ще се покаже тук.";
+            else label5.Text = "Your message will show here!";
 
             comboBox1.SelectedIndex = -1;
             comboBox2.SelectedIndex = -1;
@@ -154,19 +154,28 @@ namespace _1st_try
             try
             {
                 bool isLetter = true;
-
                 label5.Text = string.Empty;
-                foreach (var item in richTextBox1.Text)
+                if (!string.IsNullOrEmpty(richTextBox1.Text))
                 {
-                    if (!string.IsNullOrEmpty(richTextBox1.Text))
+                    foreach (char item in richTextBox1.Text)
                     {
-                        if (!(((int)richTextBox1.Text[richTextBox1.Text.Length - 1] >= 65 &&
-                            (int)richTextBox1.Text[richTextBox1.Text.Length - 1] <= 90) ||
-                            ((int)richTextBox1.Text[richTextBox1.Text.Length - 1] >= 97 &&
-                            (int)richTextBox1.Text[richTextBox1.Text.Length - 1] <= 122)))
+                        if (!(((int)item >= 65 &&
+                            (int)item <= 90) ||
+                            ((int)item >= 97 &&
+                            (int)item <= 122)))
                         {
                             isLetter = false;
+                            if (radioButton2.Checked)
+                            {
+                                label3.Text = "Неподдържан символ.";
+                            }
+                            else label3.Text = "Unsupported symbol.";
                         }
+                        else
+                        {
+                            label3.Text = string.Empty;
+                        }
+
                         if (flag_comboBox1 && flag_comboBox2 && flag_comboBox3 && isLetter)
                         {
                             comboBox1.Enabled = false;
@@ -186,7 +195,6 @@ namespace _1st_try
                                 label5.Text = "";
                                 label3.Text = "";
                             }
-
 
                             //Encryption logic
                             char currentLetter = Char.ToUpper(item);
@@ -264,11 +272,11 @@ namespace _1st_try
                         }
                         else if (isLetter)
                         {
-                            if (radioButton1.Checked)
+                            if (radioButton2.Checked)
                             {
-                                label5.Text = "Make sure that the rotors are set to the right setting.";
+                                label5.Text = "Уверете се, че роторите са на правилната настройка.";
                             }
-                            else label5.Text = "Уверете се, че роторите са на правилната настройка.";
+                            else label5.Text = "Make sure that the rotors are set to the right setting.";
                         }
                     }
                 }
@@ -289,119 +297,130 @@ namespace _1st_try
             try
             {
                 bool isLetter = true;
-
                 label5.Text = string.Empty;
-                foreach (var item in richTextBox1.Text)
+                if (!string.IsNullOrEmpty(richTextBox1.Text))
                 {
-                    isLetter = true;
-                    if (!(((int)richTextBox1.Text[richTextBox1.Text.Length - 1] >= 65 &&
-                        (int)richTextBox1.Text[richTextBox1.Text.Length - 1] <= 90) ||
-                        ((int)richTextBox1.Text[richTextBox1.Text.Length - 1] >= 97 &&
-                        (int)richTextBox1.Text[richTextBox1.Text.Length - 1] <= 122)))
+                    foreach (char item in richTextBox1.Text)
                     {
-                        isLetter = false;
-                    }
-
-                    if (flag_comboBox1 && flag_comboBox2 && flag_comboBox3 && richTextBox1.Text != "" && isLetter)
-                    {
-                        comboBox1.Enabled = false;
-                        comboBox2.Enabled = false;
-                        comboBox3.Enabled = false;
-
-                        if (label5.Text == "Make sure that the rotors are set to the right setting."
-                            || label5.Text == "Your message will show here!"
-                            || label5.Text == "Уверете се, че роторите са на правилната настройка."
-                            || label5.Text == "Съобщението ще се покаже тук."
-                            )
+                        isLetter = true;
+                        if (!(((int)item >= 65 &&
+                            (int)item <= 90) ||
+                            ((int)item >= 97 &&
+                            (int)item <= 122)))
                         {
+                            isLetter = false;
+                            if (radioButton2.Checked)
+                            {
+                                label3.Text = "Неподдържан символ.";
+                            }
+                            else label3.Text = "Unsupported symbol.";
+                        }
+                        else
+                        {
+                            label3.Text = string.Empty;
+                        }
+
+                            if (flag_comboBox1 && flag_comboBox2 && flag_comboBox3 && isLetter)
+                        {
+                            comboBox1.Enabled = false;
+                            comboBox2.Enabled = false;
+                            comboBox3.Enabled = false;
+
                             if (label5.Text == "Make sure that the rotors are set to the right setting."
-                                || label5.Text == "Уверете се, че роторите са на правилната настройка.")
+                                || label5.Text == "Your message will show here!"
+                                || label5.Text == "Уверете се, че роторите са на правилната настройка."
+                                || label5.Text == "Съобщението ще се покаже тук."
+                                )
                             {
-                                richTextBox1.Text = "";
+                                if (label5.Text == "Make sure that the rotors are set to the right setting."
+                                    || label5.Text == "Уверете се, че роторите са на правилната настройка.")
+                                {
+                                    richTextBox1.Text = "";
+                                }
+                                label5.Text = "";
+                                label3.Text = "";
                             }
-                            label5.Text = "";
-                            label3.Text = "";
-                        }
 
-                        //Decryption logic
-                        char currentLetter = Char.ToUpper(item);
+                            //Decryption logic
+                            char currentLetter = Char.ToUpper(item);
 
-                        for (int i = 0; i < rotor_3.Count; i++)
-                        {
-                            if (rotor_3[i] == currentLetter - 65)
+                            for (int i = 0; i < rotor_3.Count; i++)
                             {
-                                currentLetter = (char)i;
-                                break;
+                                if (rotor_3[i] == currentLetter - 65)
+                                {
+                                    currentLetter = (char)i;
+                                    break;
+                                }
                             }
+
+                            currentLetter = (char)rotor3_rotor2.First(x => x.Value == currentLetter).Key;
+
+                            currentLetter = (char)rotor_2.IndexOf(currentLetter);
+
+                            currentLetter = (char)rotor2_rotor1.First(x => x.Value == currentLetter).Key;
+
+                            currentLetter = (char)rotor_1.IndexOf(currentLetter);
+
+                            if (Reflector.ContainsKey(currentLetter))
+                            {
+                                currentLetter = (char)Reflector[currentLetter];
+                            }
+                            else
+                            {
+                                currentLetter = (char)Reflector.First(x => x.Value == currentLetter).Key;
+                            }
+
+                            currentLetter = (char)rotor_1.IndexOf(currentLetter);
+
+                            currentLetter = (char)rotor2_rotor1.First(x => x.Value == currentLetter).Key;
+
+                            currentLetter = (char)rotor_2.IndexOf(currentLetter);
+
+                            currentLetter = (char)rotor3_rotor2.First(x => x.Value == currentLetter).Key;
+
+                            currentLetter = (char)rotor_3[currentLetter];
+
+                            if (Char.IsUpper(item))
+                            {
+                                label5.Text += (char)(currentLetter + 65);
+                            }
+                            else
+                                label5.Text += char.ToLower((char)(currentLetter + 65));
+
+                            //Rotors rotation
+                            if (int.Parse(comboBox1.Text) == 26 && int.Parse(comboBox2.Text) % 4 == 0 && int.Parse(comboBox3.Text) % 6 == 0)
+                            {
+                                comboBox1.Text = 1.ToString();
+                            }
+                            else if (int.Parse(comboBox2.Text) % 4 == 0 && int.Parse(comboBox3.Text) % 6 == 0)
+                            {
+                                comboBox1.Text = (int.Parse(comboBox1.Text) + 1).ToString();
+                            }
+
+                            if (int.Parse(comboBox2.Text) == 26 && int.Parse(comboBox3.Text) % 6 == 0)
+                            {
+                                comboBox2.Text = 1.ToString();
+                            }
+                            else if (int.Parse(comboBox3.Text) % 6 == 0)
+                            {
+                                comboBox2.Text = (int.Parse(comboBox2.Text) + 1).ToString();
+                            }
+
+                            if (int.Parse(comboBox3.Text) == 26)
+                            {
+                                comboBox3.Text = 1.ToString();
+                            }
+                            else
+                                comboBox3.Text = (int.Parse(comboBox3.Text) + 1).ToString();
                         }
-
-                        currentLetter = (char)rotor3_rotor2.First(x => x.Value == currentLetter).Key;
-
-                        currentLetter = (char)rotor_2.IndexOf(currentLetter);
-
-                        currentLetter = (char)rotor2_rotor1.First(x => x.Value == currentLetter).Key;
-
-                        currentLetter = (char)rotor_1.IndexOf(currentLetter);
-
-                        if (Reflector.ContainsKey(currentLetter))
+                        else if (isLetter)
                         {
-                            currentLetter = (char)Reflector[currentLetter];
+                            if (radioButton2.Checked)
+                            {
+                                label5.Text = "Уверете се, че роторите са на правилната настройка.";
+                            }
+                            else label5.Text = "Make sure that the rotors are set to the right setting.";
                         }
-                        else
-                        {
-                            currentLetter = (char)Reflector.First(x => x.Value == currentLetter).Key;
-                        }
-
-                        currentLetter = (char)rotor_1.IndexOf(currentLetter);
-
-                        currentLetter = (char)rotor2_rotor1.First(x => x.Value == currentLetter).Key;
-
-                        currentLetter = (char)rotor_2.IndexOf(currentLetter);
-
-                        currentLetter = (char)rotor3_rotor2.First(x => x.Value == currentLetter).Key;
-
-                        currentLetter = (char)rotor_3[currentLetter];
-
-                        if (Char.IsUpper(item))
-                        {
-                            label5.Text += (char)(currentLetter + 65);
-                        }
-                        else
-                            label5.Text += char.ToLower((char)(currentLetter + 65));
-
-                        //Rotors rotation
-                        if (int.Parse(comboBox1.Text) == 26 && int.Parse(comboBox2.Text) % 4 == 0 && int.Parse(comboBox3.Text) % 6 == 0)
-                        {
-                            comboBox1.Text = 1.ToString();
-                        }
-                        else if (int.Parse(comboBox2.Text) % 4 == 0 && int.Parse(comboBox3.Text) % 6 == 0)
-                        {
-                            comboBox1.Text = (int.Parse(comboBox1.Text) + 1).ToString();
-                        }
-
-                        if (int.Parse(comboBox2.Text) == 26 && int.Parse(comboBox3.Text) % 6 == 0)
-                        {
-                            comboBox2.Text = 1.ToString();
-                        }
-                        else if (int.Parse(comboBox3.Text) % 6 == 0)
-                        {
-                            comboBox2.Text = (int.Parse(comboBox2.Text) + 1).ToString();
-                        }
-
-                        if (int.Parse(comboBox3.Text) == 26)
-                        {
-                            comboBox3.Text = 1.ToString();
-                        }
-                        else
-                            comboBox3.Text = (int.Parse(comboBox3.Text) + 1).ToString();
-                    }
-                    else if (isLetter)
-                    {
-                        if (radioButton1.Checked)
-                        {
-                            label5.Text = "Make sure that the rotors are set to the right setting.";
-                        }
-                        else label5.Text = "Уверете се, че роторите са на правилната настройка.";
                     }
                 }
             }
@@ -421,6 +440,10 @@ namespace _1st_try
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
+            button1.Text = "New message";
+            button2.Text = "Decrypt";
+            button3.Text = "Encrypt";
+
             if (label5.Text == "" || label5.Text == "Съобщението ще се покаже тук.")
             {
                 label5.Text = "Your message will show here!";
@@ -429,10 +452,18 @@ namespace _1st_try
             {
                 label1.Text = "Enter your text below!";
             }
+            if (label3.Text == "Неподдържан символ.")
+            {
+                label3.Text = "Unsupported symbol.";
+            }
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
+            button1.Text = "Ново съобщение";
+            button2.Text = "Декриптиране";
+            button3.Text = "Криптиране";
+
             if (label5.Text == "" || label5.Text == "Your message will show here!")
             {
                 label5.Text = "Съобщението ще се покаже тук.";
@@ -441,16 +472,10 @@ namespace _1st_try
             {
                 label1.Text = "Въведете текста долу.";
             }
-        }
-
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
+            if (label3.Text == "Unsupported symbol.")
+            {
+                label3.Text = "Неподдържан символ.";
+            }
         }
     }
 }

@@ -47,7 +47,7 @@ namespace _1st_try
             // 
             label5.AccessibleRole = AccessibleRole.ButtonMenu;
             label5.AutoSize = true;
-            label5.Location = new Point(309, 221);
+            label5.Location = new Point(310, 263);
             label5.Name = "label5";
             label5.Size = new Size(202, 20);
             label5.TabIndex = 9;
@@ -97,7 +97,6 @@ namespace _1st_try
             label1.Size = new Size(154, 20);
             label1.TabIndex = 14;
             label1.Text = "Enter your text below!";
-            label1.Click += label1_Click;
             // 
             // richTextBox1
             // 
@@ -107,7 +106,6 @@ namespace _1st_try
             richTextBox1.Size = new Size(139, 152);
             richTextBox1.TabIndex = 15;
             richTextBox1.Text = "";
-            richTextBox1.TextChanged += richTextBox1_TextChanged;
             // 
             // button1
             // 
@@ -209,7 +207,6 @@ namespace _1st_try
         private ComboBox comboBox3;
         private Label label1;
         private RichTextBox richTextBox1;
-        private Label label2;
         private Button button1;
         private Button button2;
         private Label label3;
