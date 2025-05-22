@@ -1,6 +1,6 @@
 ﻿/*TO DO
 ? - Numbers encryption
-- Unsupported symbols
+done - Unsupported symbols
 done - Multiple language UI
 done - Unsupported symbol protection
 done - Decryption

@@ -7,7 +7,7 @@
       "RelativeMoniker": "D:0:0:{4B89B72C-1B63-4839-8D50-E9BFCFFA227C}|1st try\\1st try.csproj|solutionrelative:1st try\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4B89B72C-1B63-4839-8D50-E9BFCFFA227C}|1st try\\1st try.csproj|c:\\users\\kyord\\desktop\\enigma-machine\\1st try\\1st try\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{4B89B72C-1B63-4839-8D50-E9BFCFFA227C}|1st try\\1st try.csproj|C:\\Users\\kyord\\Desktop\\Enigma-machine\\1st try\\1st try\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{4B89B72C-1B63-4839-8D50-E9BFCFFA227C}|1st try\\1st try.csproj|solutionrelative:1st try\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
@@ -34,8 +34,7 @@
               "RelativeToolTip": "1st try\\Form1.Designer.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-22T06:12:07.934Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-22T06:12:07.934Z"
             },
             {
               "$type": "Document",
@@ -57,7 +56,7 @@
               "RelativeDocumentMoniker": "1st try\\Form1.cs",
               "ToolTip": "C:\\Users\\kyord\\Desktop\\Enigma-machine\\1st try\\1st try\\Form1.cs",
               "RelativeToolTip": "1st try\\Form1.cs",
-              "ViewState": "AgIAAHkAAAAAAAAAAAA6wIUAAAApAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-18T08:51:36.524Z",
               "EditorCaption": ""
