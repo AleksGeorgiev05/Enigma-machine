@@ -1,7 +1,6 @@
 ﻿/*TO DO
 ? - Numbers encryption
-- Enable to erase
-- Unsupported symbol
+- Unsupported symbols
 done - Multiple language UI
 done - Unsupported symbol protection
 done - Decryption
@@ -159,21 +158,14 @@ namespace _1st_try
                 {
                     foreach (char item in richTextBox1.Text)
                     {
+                        isLetter = true;
                         if (!(((int)item >= 65 &&
                             (int)item <= 90) ||
                             ((int)item >= 97 &&
                             (int)item <= 122)))
                         {
                             isLetter = false;
-                            if (radioButton2.Checked)
-                            {
-                                label3.Text = "Неподдържан символ.";
-                            }
-                            else label3.Text = "Unsupported symbol.";
-                        }
-                        else
-                        {
-                            label3.Text = string.Empty;
+                            label5.Text += item;
                         }
 
                         if (flag_comboBox1 && flag_comboBox2 && flag_comboBox3 && isLetter)
@@ -267,8 +259,6 @@ namespace _1st_try
                             }
                             else
                                 comboBox3.Text = (int.Parse(comboBox3.Text) + 1).ToString();
-
-
                         }
                         else if (isLetter)
                         {
@@ -309,18 +299,10 @@ namespace _1st_try
                             (int)item <= 122)))
                         {
                             isLetter = false;
-                            if (radioButton2.Checked)
-                            {
-                                label3.Text = "Неподдържан символ.";
-                            }
-                            else label3.Text = "Unsupported symbol.";
-                        }
-                        else
-                        {
-                            label3.Text = string.Empty;
+                            label5.Text += item;
                         }
 
-                            if (flag_comboBox1 && flag_comboBox2 && flag_comboBox3 && isLetter)
+                        if (flag_comboBox1 && flag_comboBox2 && flag_comboBox3 && isLetter)
                         {
                             comboBox1.Enabled = false;
                             comboBox2.Enabled = false;
