@@ -165,7 +165,10 @@ namespace _1st_try
                             (int)item <= 122)))
                         {
                             isLetter = false;
-                            label5.Text += item;
+                            if (flag_comboBox1 && flag_comboBox2 && flag_comboBox3)
+                            {
+                                label5.Text += item;
+                            }
                         }
 
                         if (flag_comboBox1 && flag_comboBox2 && flag_comboBox3 && isLetter)
@@ -426,6 +429,10 @@ namespace _1st_try
             button2.Text = "Decrypt";
             button3.Text = "Encrypt";
 
+            label2.Text = "Rotor 1";
+            label4.Text = "Rotor 2";
+            label6.Text = "Rotor 3";
+
             if (label5.Text == "" || label5.Text == "Съобщението ще се покаже тук.")
             {
                 label5.Text = "Your message will show here!";
@@ -438,6 +445,11 @@ namespace _1st_try
             {
                 label3.Text = "Unsupported symbol.";
             }
+
+            if (label5.Text == "Уверете се, че роторите са на правилната настройка.")
+            {
+                label5.Text = "Make sure that the rotors are set to the right setting.";
+            }
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
@@ -445,6 +457,10 @@ namespace _1st_try
             button1.Text = "Ново съобщение";
             button2.Text = "Декриптиране";
             button3.Text = "Криптиране";
+
+            label2.Text = "Ротор 1";
+            label4.Text = "Ротор 2";
+            label6.Text = "Ротор 3";
 
             if (label5.Text == "" || label5.Text == "Your message will show here!")
             {
@@ -458,6 +474,21 @@ namespace _1st_try
             {
                 label3.Text = "Неподдържан символ.";
             }
+
+            if (label5.Text == "Make sure that the rotors are set to the right setting.")
+            {
+                label5.Text = "Уверете се, че роторите са на правилната настройка.";
+            }
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

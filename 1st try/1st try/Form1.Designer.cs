@@ -41,6 +41,9 @@ namespace _1st_try
             button3 = new Button();
             radioButton1 = new RadioButton();
             radioButton2 = new RadioButton();
+            label2 = new Label();
+            label4 = new Label();
+            label6 = new Label();
             SuspendLayout();
             // 
             // label5
@@ -173,12 +176,44 @@ namespace _1st_try
             radioButton2.UseVisualStyleBackColor = true;
             radioButton2.CheckedChanged += radioButton2_CheckedChanged;
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(90, 94);
+            label2.Name = "label2";
+            label2.Size = new Size(58, 20);
+            label2.TabIndex = 24;
+            label2.Text = "Rotor 1";
+            label2.Click += label2_Click;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(310, 94);
+            label4.Name = "label4";
+            label4.Size = new Size(58, 20);
+            label4.TabIndex = 25;
+            label4.Text = "Rotor 2";
+            label4.Click += label4_Click;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(531, 94);
+            label6.Name = "label6";
+            label6.Size = new Size(58, 20);
+            label6.TabIndex = 26;
+            label6.Text = "Rotor 3";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
             ClientSize = new Size(914, 600);
+            Controls.Add(label6);
+            Controls.Add(label4);
+            Controls.Add(label2);
             Controls.Add(radioButton2);
             Controls.Add(radioButton1);
             Controls.Add(button3);
@@ -213,5 +248,8 @@ namespace _1st_try
         private Button button3;
         private RadioButton radioButton1;
         private RadioButton radioButton2;
+        private Label label2;
+        private Label label4;
+        private Label label6;
     }
 }
